@@ -1,2 +1,2 @@
-# ARTRAssignments
+# ARTR
 ARTR assignments
