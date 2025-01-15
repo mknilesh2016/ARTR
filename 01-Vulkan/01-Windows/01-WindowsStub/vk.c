@@ -14,7 +14,7 @@
 #include <windows.h>
 #include <stdio.h>
 
-#include "Window.h"
+#include "vk.h"
 
 // Macro definitions
 #define WINDOW_WIDTH	800
@@ -84,9 +84,9 @@ int wWinMain(
 
     // Create the window
     hwnd = CreateWindowEx(
-        WS_EX_APPWINDOW | WS_EX_TOPMOST,
+        WS_EX_APPWINDOW,
         szAppName,
-        TEXT("Nilesh Mahajan: Window"),
+        TEXT("Nilesh Mahajan: Vulkan"),
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE,
         (GetSystemMetrics(SM_CXSCREEN) - WINDOW_WIDTH) / 2,
         (GetSystemMetrics(SM_CYSCREEN) - WINDOW_HEIGHT) / 2,
@@ -105,18 +105,18 @@ int wWinMain(
 
     ghwnd = hwnd;
 
-    // Show window
-    if (ShowWindow(hwnd, iCmdShow) == FALSE)
-    {
-        LOGF("ShowWindow failed. Last error = %u.", GetLastError());
-        SafeExit(-1);
-    }
-
     // Initialize
     iRet = Initialize();
     if (iRet != 0)
     {
         LOGF("Initialize() failed with %i.", iRet);
+        SafeExit(-1);
+    }
+
+    // Show window
+    if (ShowWindow(hwnd, iCmdShow) == FALSE)
+    {
+        LOGF("ShowWindow failed. Last error = %u.", GetLastError());
         SafeExit(-1);
     }
 
@@ -157,7 +157,6 @@ int wWinMain(
     return ((int)msg.wParam);
 }
 
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
     // Function declarations
@@ -167,6 +166,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
     // Code
     switch (iMsg)
     {
+    case WM_CREATE:
+        // memset(&wpPrev, 0, sizeof(WINDOWPLACEMENT));
+        // wpPrev.length = sizeof(WINDOWPLACEMENT);
+        break;
+
     case WM_SETFOCUS:
         gbActiveWindow = TRUE;
         break;
@@ -180,9 +184,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
         // WM_PAINT will paint the background
         break;
 
-        // return 0 for immediate mode graphics
-        // we don't want this msg to go to DefWindowProc()
-        //return 0;
+    case WM_KEYDOWN:
+        switch (wParam)
+        {
+        case ESC_KEY_CODE:
+            (void)DestroyWindow(hwnd);
+            break;
+
+        default:
+            break;
+        }
+        break;
 
     case WM_CHAR:
         switch (wParam)
@@ -197,24 +209,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
         }
         break;
 
-    case WM_KEYDOWN:
-        switch (wParam)
-        {
-        case ESC_KEY_CODE:
-            (void) DestroyWindow(hwnd);
-            break;
-
-        default:
-            break;
-        }
-        break;
-
     case WM_SIZE:
         Resize(LOWORD(lParam), HIWORD(lParam));
         break;
 
     case WM_CLOSE:
-        (void) DestroyWindow(hwnd);
+        Uninitialize();
         break;
 
     case WM_DESTROY:
@@ -230,26 +230,25 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 void ToggleFullScreen(void)
 {
-    // Variable declarations
-    static DWORD dwStyle;
-    static WINDOWPLACEMENT windowPlacement;
+    static WINDOWPLACEMENT wpPrev;
+    static DWORD dwPrevStyle = 0;
     static MONITORINFO monitorInfo;
 
-    // Code
-    windowPlacement.length = sizeof(WINDOWPLACEMENT);
-
+    wpPrev.length = sizeof(WINDOWPLACEMENT);
+    
+    // Variable declarations
     if (gbFullScreen == FALSE)
     {
-        dwStyle = GetWindowLong(ghwnd, GWL_STYLE);
+        dwPrevStyle = GetWindowLong(ghwnd, GWL_STYLE);
 
-        if (dwStyle & WS_OVERLAPPEDWINDOW)
+        if (dwPrevStyle & WS_OVERLAPPEDWINDOW)
         {
             monitorInfo.cbSize = sizeof(MONITORINFO);
 
-            if (GetWindowPlacement(ghwnd, &windowPlacement) == TRUE &&
+            if (GetWindowPlacement(ghwnd, &wpPrev) == TRUE &&
                 GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &monitorInfo) == TRUE)
             {
-                (void) SetWindowLong(ghwnd, GWL_STYLE, (dwStyle & ~WS_OVERLAPPEDWINDOW));
+                (void)SetWindowLong(ghwnd, GWL_STYLE, (dwPrevStyle & ~WS_OVERLAPPEDWINDOW));
                 (void) SetWindowPos(
                     ghwnd,
                     HWND_TOP,
@@ -266,8 +265,8 @@ void ToggleFullScreen(void)
     }
     else
     {
-        SetWindowLong(ghwnd, GWL_STYLE, (dwStyle | WS_OVERLAPPEDWINDOW));
-        (void) SetWindowPlacement(ghwnd, &windowPlacement);
+        SetWindowLong(ghwnd, GWL_STYLE, (dwPrevStyle | WS_OVERLAPPEDWINDOW));
+        (void) SetWindowPlacement(ghwnd, &wpPrev);
         (void) SetWindowPos(
             ghwnd,
             HWND_TOP,
