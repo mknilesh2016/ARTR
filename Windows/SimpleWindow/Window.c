@@ -31,7 +31,7 @@ BOOL gbFullScreen = FALSE;
 BOOL gbActiveWindow = FALSE;
 FILE* gpFile = NULL;
 
-// Entry point fi=unction
+// Entry point function
 int wWinMain(
     _In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
@@ -317,13 +317,13 @@ void Uninitialize(void)
         ToggleFullScreen();
     }
 
-    if (ghwnd)
+    if (ghwnd != NULL)
     {
         DestroyWindow(ghwnd);
         ghwnd = NULL;
     }
 
-    if (gpFile)
+    if (gpFile != NULL)
     {
         LOGF("Log file successfully closed.");
         fclose(gpFile);
