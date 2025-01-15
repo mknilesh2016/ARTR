@@ -5,6 +5,9 @@
 *.vs
 *.vscode
 
+# Log files
+app_log.txt
+
 # Compiled Object files
 *.slo
 *.lo
