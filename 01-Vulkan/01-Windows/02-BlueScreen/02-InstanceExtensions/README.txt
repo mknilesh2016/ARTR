@@ -1,0 +1,2 @@
+- Gets List of Instance extensions
+- Enable required extensions
