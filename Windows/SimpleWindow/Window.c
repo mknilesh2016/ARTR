@@ -1,8 +1,8 @@
 // ************************************************************************* //
 //
-// Name		:	Nilesh Mahajan
-// Roll No.	:	ARTR01-109
-// Program	:	SimpleWindow
+// Name		:   Nilesh Mahajan
+// Roll No.	:   ARTR01-109
+// Program	:   SimpleWindow
 //              Based on IntegratedWindow Template by Pooja Waghmare
 // 
 // ************************************************************************* //
@@ -19,6 +19,7 @@
 // Macro definitions
 #define WINDOW_WIDTH	800
 #define WINDOW_HEIGHT	600
+#define ESC_KEY_CODE    27
 
 // Global function declarations
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -78,7 +79,7 @@ int wWinMain(
     wndClassEx.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
 
     // Register above class
-    RegisterClassEx(&wndClassEx);
+    (void) RegisterClassEx(&wndClassEx);
 
     // Create the window
     hwnd = CreateWindowEx(
@@ -119,8 +120,8 @@ int wWinMain(
     }
 
     // Bring window to foreground and set focus on it
-    SetForegroundWindow(hwnd);
-    SetFocus(hwnd);
+    (void) SetForegroundWindow(hwnd);
+    (void) SetFocus(hwnd);
 
     // Game loop
     while (bDone == FALSE)
@@ -133,8 +134,8 @@ int wWinMain(
             }
             else
             {
-                TranslateMessage(&msg);
-                DispatchMessage(&msg);
+                (void) TranslateMessage(&msg);
+                (void) DispatchMessage(&msg);
             }
         }
         else
@@ -198,8 +199,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         switch (wParam)
         {
-        case 27:	// Escape key
-            DestroyWindow(hwnd);
+        case ESC_KEY_CODE:
+            (void) DestroyWindow(hwnd);
             break;
 
         default:
@@ -212,7 +213,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_CLOSE:
-        DestroyWindow(hwnd);
+        (void) DestroyWindow(hwnd);
         break;
 
     case WM_DESTROY:
@@ -324,14 +325,14 @@ void Uninitialize(void)
 
     if (ghwnd != NULL)
     {
-        DestroyWindow(ghwnd);
+        (void) DestroyWindow(ghwnd);
         ghwnd = NULL;
     }
 
     if (gpFile != NULL)
     {
         LOGF("Log file successfully closed.");
-        fclose(gpFile);
+        (void) fclose(gpFile);
         gpFile = NULL;
     }
 }
@@ -349,13 +350,13 @@ void LOGF(const char* format, ...)
     va_start(args, format);
 
     // Write to the file using vfprintf
-    vfprintf(gpFile, format, args);
+    (void) vfprintf(gpFile, format, args);
 
     // Add newline
-    fprintf(gpFile, "\n");
+    (void) fprintf(gpFile, "\n");
 
     // Close the file
-    fflush(gpFile);
+    (void) fflush(gpFile);
 
     // Clean up the va_list
     va_end(args);
