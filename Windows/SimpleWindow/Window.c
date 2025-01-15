@@ -232,11 +232,11 @@ void ToggleFullScreen(void)
 {
     // Variable declarations
     static DWORD dwStyle;
-    static WINDOWPLACEMENT wp;
-    static MONITORINFO mi;
+    static WINDOWPLACEMENT windowPlacement;
+    static MONITORINFO monitorInfo;
 
     // Code
-    wp.length = sizeof(WINDOWPLACEMENT);
+    windowPlacement.length = sizeof(WINDOWPLACEMENT);
 
     if (gbFullScreen == FALSE)
     {
@@ -244,19 +244,19 @@ void ToggleFullScreen(void)
 
         if (dwStyle & WS_OVERLAPPEDWINDOW)
         {
-            mi.cbSize = sizeof(MONITORINFO);
+            monitorInfo.cbSize = sizeof(MONITORINFO);
 
-            if (GetWindowPlacement(ghwnd, &wp) == TRUE &&
-                GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &mi) == TRUE)
+            if (GetWindowPlacement(ghwnd, &windowPlacement) == TRUE &&
+                GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &monitorInfo) == TRUE)
             {
                 (void) SetWindowLong(ghwnd, GWL_STYLE, (dwStyle & ~WS_OVERLAPPEDWINDOW));
                 (void) SetWindowPos(
                     ghwnd,
                     HWND_TOP,
-                    mi.rcMonitor.left,
-                    mi.rcMonitor.top,
-                    (mi.rcMonitor.right - mi.rcMonitor.left),
-                    (mi.rcMonitor.bottom - mi.rcMonitor.top),
+                    monitorInfo.rcMonitor.left,
+                    monitorInfo.rcMonitor.top,
+                    (monitorInfo.rcMonitor.right - monitorInfo.rcMonitor.left),
+                    (monitorInfo.rcMonitor.bottom - monitorInfo.rcMonitor.top),
                     SWP_NOZORDER | SWP_FRAMECHANGED);
             }
 
@@ -267,7 +267,7 @@ void ToggleFullScreen(void)
     else
     {
         SetWindowLong(ghwnd, GWL_STYLE, (dwStyle | WS_OVERLAPPEDWINDOW));
-        (void) SetWindowPlacement(ghwnd, &wp);
+        (void) SetWindowPlacement(ghwnd, &windowPlacement);
         (void) SetWindowPos(
             ghwnd,
             HWND_TOP,
