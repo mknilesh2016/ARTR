@@ -46,8 +46,8 @@ int wWinMain(
     void Uninitialize(void);
 
     // Variable declarations
-    WNDCLASSEX wndclass;
-    HWND hwnd;
+    WNDCLASSEX wndClassEx = {0};
+    HWND hwnd = NULL;
     MSG msg;
     TCHAR szAppName[] = TEXT("Simple Window");
     BOOL bDone = FALSE;
@@ -64,24 +64,25 @@ int wWinMain(
     LOGF("Log file created successfully.");
 
     // Initialize WNDCLASSEX structure
-    wndclass.cbSize = sizeof(WNDCLASSEX);
-    wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-    wndclass.cbClsExtra = 0;
-    wndclass.cbWndExtra = 0;
-    wndclass.lpfnWndProc = WndProc;
-    wndclass.hInstance = hInstance;
-    wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    wndclass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
-    wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wndclass.lpszClassName = szAppName;
-    wndclass.lpszMenuName = NULL;
-    wndclass.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
+    wndClassEx.cbSize = sizeof(WNDCLASSEX);
+    wndClassEx.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+    wndClassEx.cbClsExtra = 0;
+    wndClassEx.cbWndExtra = 0;
+    wndClassEx.lpfnWndProc = WndProc;
+    wndClassEx.hInstance = hInstance;
+    wndClassEx.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wndClassEx.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
+    wndClassEx.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wndClassEx.lpszClassName = szAppName;
+    wndClassEx.lpszMenuName = NULL;
+    wndClassEx.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(MYICON));
 
     // Register above class
-    RegisterClassEx(&wndclass);
+    RegisterClassEx(&wndClassEx);
 
     // Create the window
-    hwnd = CreateWindowEx(WS_EX_APPWINDOW | WS_EX_TOPMOST,
+    hwnd = CreateWindowEx(
+        WS_EX_APPWINDOW | WS_EX_TOPMOST,
         szAppName,
         TEXT("Nilesh Mahajan: Window"),
         WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE,
@@ -243,11 +244,12 @@ void ToggleFullScreen(void)
         {
             mi.cbSize = sizeof(MONITORINFO);
 
-            if (GetWindowPlacement(ghwnd, &wp) &&
-                GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &mi))
+            if (GetWindowPlacement(ghwnd, &wp) == TRUE &&
+                GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &mi) == TRUE)
             {
-                SetWindowLong(ghwnd, GWL_STYLE, (dwStyle & ~WS_OVERLAPPEDWINDOW));
-                SetWindowPos(ghwnd,
+                (void) SetWindowLong(ghwnd, GWL_STYLE, (dwStyle & ~WS_OVERLAPPEDWINDOW));
+                (void) SetWindowPos(
+                    ghwnd,
                     HWND_TOP,
                     mi.rcMonitor.left,
                     mi.rcMonitor.top,
@@ -256,17 +258,20 @@ void ToggleFullScreen(void)
                     SWP_NOZORDER | SWP_FRAMECHANGED);
             }
 
-            ShowCursor(FALSE);
+            (void) ShowCursor(FALSE);
             gbFullScreen = TRUE;
         }
     }
     else
     {
         SetWindowLong(ghwnd, GWL_STYLE, (dwStyle | WS_OVERLAPPEDWINDOW));
-        SetWindowPlacement(ghwnd, &wp);
-        SetWindowPos(ghwnd, HWND_TOP, 0, 0, 0, 0,
+        (void) SetWindowPlacement(ghwnd, &wp);
+        (void) SetWindowPos(
+            ghwnd,
+            HWND_TOP,
+            0, 0, 0, 0,
             SWP_NOMOVE | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER | SWP_FRAMECHANGED);
-        ShowCursor(TRUE);
+        (void) ShowCursor(TRUE);
         gbFullScreen = FALSE;
     }
 }
