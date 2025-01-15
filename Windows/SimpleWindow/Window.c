@@ -47,7 +47,7 @@ int wWinMain(
     void Uninitialize(void);
 
     // Variable declarations
-    WNDCLASSEX wndClassEx = {0};
+    WNDCLASSEX wndClassEx;
     HWND hwnd = NULL;
     MSG msg;
     TCHAR szAppName[] = TEXT("Simple Window");
@@ -65,6 +65,7 @@ int wWinMain(
     LOGF("Log file created successfully.");
 
     // Initialize WNDCLASSEX structure
+    memset(&wndClassEx, 0, sizeof(WNDCLASSEX));
     wndClassEx.cbSize = sizeof(WNDCLASSEX);
     wndClassEx.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
     wndClassEx.cbClsExtra = 0;
