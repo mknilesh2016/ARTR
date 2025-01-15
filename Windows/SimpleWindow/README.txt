@@ -31,6 +31,7 @@ Additions:
 - Updated Icon and window title and other texts including log file names
 - Added #pragma warning(disable : 4996) to disable fopen warning
 - Added annotation prototypes for WinMain to get rid of error
+- Added WS_EX_TOPMOST to extended styles in CreateWindowEx()
 - Called ShowWindow() before Initialize()
 - Added Error Handling
 - Added SafeExit and LOGF() methods for consistency
