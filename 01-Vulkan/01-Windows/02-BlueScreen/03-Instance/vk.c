@@ -48,6 +48,8 @@ uint32_t enabledInstanceExtensionCount = 0;
 // VK_KHR_SURFACE_EXTENSION_NAME
 // VK_KHR_WIN32_SURFACE_EXTENSION_NAME
 const char* enabledInstanceExtensionNames_array[2];
+// Vulkan instance
+VkInstance vkInstance = VK_NULL_HANDLE;
 
 // Entry point function
 int wWinMain(
@@ -306,21 +308,21 @@ void ToggleFullScreen(void)
 VkResult Initialize(void)
 {
     // Function declarations
-    VkResult FillInstanceExtensionNames(void);
+    VkResult CreateVulkanInstance(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
 
     // Code
-    vkResult = FillInstanceExtensionNames();
+    vkResult = CreateVulkanInstance();
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("Initialize: FillInstanceExtensionNames() failed with %i.", vkResult);
+        LOGF("Initialize: CreateVulkanInstance() failed with %i.", vkResult);
         return (vkResult);
     }
     else
     {
-        LOGF("Initialize: FillInstanceExtensionNames() succeded.");
+        LOGF("Initialize: CreateVulkanInstance() succeded.");
     }
 
     return (vkResult);
@@ -358,6 +360,14 @@ void Uninitialize(void)
     if (gbFullScreen == TRUE)
     {
         ToggleFullScreen();
+    }
+
+    // Destroy vkInstance if valid
+    if (vkInstance != VK_NULL_HANDLE)
+    {
+        vkDestroyInstance(vkInstance, NULL);
+        vkInstance = NULL;
+        LOGF("Uninitialize: vkDestroyInstance succeded");
     }
 
     if (ghwnd != NULL)
@@ -406,6 +416,77 @@ void SafeExit(int iExitCode)
 }
 
 // ----------- Definitions of vulkan related functions --------------- //
+
+VkResult CreateVulkanInstance(void)
+{
+    // Function declarations
+    VkResult FillInstanceExtensionNames(void);
+
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+    VkApplicationInfo vkApplicationInfo;
+    VkInstanceCreateInfo vkInstanceCreateInfo;
+
+    // Code
+
+    // Step-1: Fill and initialize required extension names and count global variables
+    vkResult = FillInstanceExtensionNames();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVulkanInstance: FillInstanceExtensionNames() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("CreateVulkanInstance: FillInstanceExtensionNames() succeded.");
+    }
+
+    // Step-2: Initialize struct VkApplicationInfo
+    memset(&vkApplicationInfo, 0, sizeof(VkApplicationInfo));
+    vkApplicationInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    vkApplicationInfo.pNext = NULL;
+    vkApplicationInfo.pApplicationName = gpSzAppName;
+    vkApplicationInfo.applicationVersion = 1;
+    vkApplicationInfo.pEngineName = gpSzAppName;
+    vkApplicationInfo.engineVersion = 1;
+    vkApplicationInfo.apiVersion = VK_API_VERSION_1_4;
+
+    // Step-3: Initialize struct VkInstanceCreateInfo
+    memset(&vkInstanceCreateInfo, 0, sizeof(VkInstanceCreateInfo));
+    vkInstanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    vkInstanceCreateInfo.pNext = NULL;
+    vkInstanceCreateInfo.pApplicationInfo = &vkApplicationInfo;
+    vkInstanceCreateInfo.enabledExtensionCount = enabledInstanceExtensionCount;
+    vkInstanceCreateInfo.ppEnabledExtensionNames = enabledInstanceExtensionNames_array;
+
+    // Step-4: Call vkCreateInstace() to get vkInstance in a global variable and do error checking
+    vkResult = vkCreateInstance(
+        &vkInstanceCreateInfo, // pCreateinfo
+        NULL, // pAllocator of type const VkAllocationCallbacks*
+        &vkInstance);
+
+    if (vkResult == VK_ERROR_INCOMPATIBLE_DRIVER)
+    {
+        LOGF("CreateVulkanInstance: vkCreateInstance() failed wit VK_ERROR_INCOMPATIBLE_DRIVER(%d)", vkResult);
+        return vkResult;
+    }
+    else if (vkResult == VK_ERROR_EXTENSION_NOT_PRESENT)
+    {
+        LOGF("CreateVulkanInstance: vkCreateInstance() failed due to VK_ERROR_EXTENSION_NOT_PRESENT(%d)", vkResult);
+        return vkResult;
+    }
+    else if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVulkanInstance: vkCreateInstance() failed with due to unknown reason (%d)", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateVulkanInstance: vkCreateInstance() succeded");
+    }
+
+    return vkResult;
+}
 
 VkResult FillInstanceExtensionNames(void)
 {
@@ -536,6 +617,7 @@ VkResult FillInstanceExtensionNames(void)
         vkResult = VK_SUCCESS;
     }
 
+    // Step-8: Print only supported instance names
     for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
     {
         LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
