@@ -518,31 +518,26 @@ VkResult FillInstanceExtensionNames(void)
     if (vulkanSurfaceExtensionFound == VK_FALSE)
     {
         LOGF("FillInstanceExtensionNames: Unable to locate VK_KHR_SURFACE_EXTENSION_NAME");
-        vkResult = VK_ERROR_INITIALIZATION_FAILED;
+        return VK_ERROR_INITIALIZATION_FAILED;
     }
     else
     {
         LOGF("FillInstanceExtensionNames: Found VK_KHR_SURFACE_EXTENSION_NAME");
-        vkResult = VK_SUCCESS;
     }
     if (vulkanWin32SurfaceExtensionFound == VK_FALSE)
     {
         LOGF("FillInstanceExtensionNames: Unable to locate VK_KHR_WIN32_SURFACE_EXTENSION_NAME");
-        vkResult = VK_ERROR_INITIALIZATION_FAILED;
+        return VK_ERROR_INITIALIZATION_FAILED;
     }
     else
     {
         LOGF("FillInstanceExtensionNames: Found VK_KHR_WIN32_SURFACE_EXTENSION_NAME");
-        vkResult = VK_SUCCESS;
     }
 
     // Step-8: Print only supported instance names
-    if (vkResult == VK_SUCCESS)
+    for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
     {
-        for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
-        {
-            LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
-        }
+        LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
     }
 
     return vkResult;
