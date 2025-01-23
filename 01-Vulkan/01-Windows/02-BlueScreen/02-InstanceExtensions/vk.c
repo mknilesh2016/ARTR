@@ -536,9 +536,13 @@ VkResult FillInstanceExtensionNames(void)
         vkResult = VK_SUCCESS;
     }
 
-    for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
+    // Step-8: Print only supported instance names
+    if (vkResult == VK_SUCCESS)
     {
-        LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
+        for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
+        {
+            LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
+        }
     }
 
     return vkResult;
