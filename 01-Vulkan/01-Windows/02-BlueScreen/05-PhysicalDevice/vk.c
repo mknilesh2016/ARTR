@@ -803,7 +803,7 @@ VkResult GetPhysicalDevice(void)
     }
     else
     {
-        LOGF("GetPhysicalDevice: Found physical device %p at %d.", vkPhysicalDevice_selected, graphicsQueueFamilyIndex_selected);
+        LOGF("GetPhysicalDevice: Found physical device %p with graphics queue at index %d.", vkPhysicalDevice_selected, graphicsQueueFamilyIndex_selected);
     }
 
     // Fill vkPhysicalMemoryProperties
