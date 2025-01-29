@@ -1,0 +1,22 @@
+Log file created successfully.
+FillInstanceExtensionNames: First call to vkEnumerateInstanceExtensionProperties() succeded.
+FillInstanceExtensionNames: Second call to vkEnumerateInstanceExtensionProperties() succeded.
+FillInstanceExtensionNames: Found VK_KHR_SURFACE_EXTENSION_NAME
+FillInstanceExtensionNames: Found VK_KHR_WIN32_SURFACE_EXTENSION_NAME
+FillInstanceExtensionNames: Enabled vulkan instance extension name = VK_KHR_surface
+FillInstanceExtensionNames: Enabled vulkan instance extension name = VK_KHR_win32_surface
+CreateVulkanInstance: FillInstanceExtensionNames() succeded.
+CreateVulkanInstance: vkCreateInstance() succeded
+Initialize: CreateVulkanInstance() succeded.
+GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded
+Initialize: GetSupportedSurface() succeded.
+GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.
+GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.
+GetPhysicalDevice: Found physical device 000001FD949F00E0 at 0.
+Selected Physical device supports tesselation shader.
+Selected Physical device supports geometry shader.
+Initialize: GetPhysicalDevice() succeded.
+WinMain: Initialize() succeded.
+Uninitialize: vkDestroySurfaceKHR succeded
+Uninitialize: vkDestroyInstance succeded
+Uninitialize: Log file successfully closed.

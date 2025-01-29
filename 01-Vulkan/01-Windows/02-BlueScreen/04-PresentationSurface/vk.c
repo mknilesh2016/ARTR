@@ -2,8 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   SimpleWindow
-//              Based on IntegratedWindow Template by Pooja Waghmare
+// Program	:   04-PresentationSurface based on 03-instance
 // 
 // ************************************************************************* //
 
@@ -50,6 +49,9 @@ uint32_t enabledInstanceExtensionCount = 0;
 const char* enabledInstanceExtensionNames_array[2];
 // Vulkan instance
 VkInstance vkInstance = VK_NULL_HANDLE;
+
+// Vulkan Presentation Surface
+VkSurfaceKHR vkSurfaceKHR = VK_NULL_HANDLE;
 
 // Entry point function
 int wWinMain(
@@ -309,6 +311,7 @@ VkResult Initialize(void)
 {
     // Function declarations
     VkResult CreateVulkanInstance(void);
+    VkResult GetSupportedSurface(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
@@ -323,6 +326,18 @@ VkResult Initialize(void)
     else
     {
         LOGF("Initialize: CreateVulkanInstance() succeded.");
+    }
+
+    // Create Vulkan presentation surface
+    vkResult = GetSupportedSurface();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: GetSupportedSurface() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: GetSupportedSurface() succeded.");
     }
 
     return (vkResult);
@@ -360,6 +375,14 @@ void Uninitialize(void)
     if (gbFullScreen == TRUE)
     {
         ToggleFullScreen();
+    }
+
+    // Destroy vkSurfaceKHR if valid
+    if (vkSurfaceKHR != VK_NULL_HANDLE)
+    {
+        vkDestroySurfaceKHR(vkInstance, vkSurfaceKHR, NULL);
+        vkSurfaceKHR = NULL;
+        LOGF("Uninitialize: vkDestroySurfaceKHR succeded");
     }
 
     // Destroy vkInstance if valid
@@ -620,6 +643,34 @@ VkResult FillInstanceExtensionNames(void)
     for (uint32_t i = 0; i < enabledInstanceExtensionCount; ++i)
     {
         LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
+    }
+
+    return vkResult;
+}
+
+VkResult GetSupportedSurface(void)
+{
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+    VkWin32SurfaceCreateInfoKHR vkWin32SurfaceCreateinfoKHR;
+
+    // Code
+    memset(&vkWin32SurfaceCreateinfoKHR, 0, sizeof(VkWin32SurfaceCreateInfoKHR));
+    vkWin32SurfaceCreateinfoKHR.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+    vkWin32SurfaceCreateinfoKHR.pNext = NULL;
+    vkWin32SurfaceCreateinfoKHR.flags = 0;
+    vkWin32SurfaceCreateinfoKHR.hinstance = (HINSTANCE)GetWindowLongPtr(ghwnd, GWLP_HINSTANCE);
+    vkWin32SurfaceCreateinfoKHR.hwnd = ghwnd;
+
+    vkResult = vkCreateWin32SurfaceKHR(vkInstance, &vkWin32SurfaceCreateinfoKHR, NULL, &vkSurfaceKHR);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("GetSupportedSurface: vkCreateWin32SurfaceKHR() failed with (%d)", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded");
     }
 
     return vkResult;
