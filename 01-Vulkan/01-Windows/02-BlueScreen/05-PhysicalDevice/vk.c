@@ -54,7 +54,7 @@ VkSurfaceKHR vkSurfaceKHR = VK_NULL_HANDLE;
 // Vulkan physical device related global variables
 VkPhysicalDevice vkPhysicalDevice_selected = VK_NULL_HANDLE;
 uint32_t graphicsQueueFamilyIndex_selected = UINT32_MAX;
-VkPhysicalDeviceMemoryProperties vkPhysicalMemoryProperties;
+VkPhysicalDeviceMemoryProperties vkPhysicalDeviceMemoryProperties;
 VkPhysicalDeviceFeatures vkPhysicalDeviceFeatures;
 
 // Entry point function
@@ -807,8 +807,8 @@ VkResult GetPhysicalDevice(void)
     }
 
     // Fill vkPhysicalMemoryProperties
-    memset(&vkPhysicalMemoryProperties, 0, sizeof(VkPhysicalDeviceProperties));
-    vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice_selected, &vkPhysicalMemoryProperties);
+    memset(&vkPhysicalDeviceMemoryProperties, 0, sizeof(VkPhysicalDeviceMemoryProperties));
+    vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice_selected, &vkPhysicalDeviceMemoryProperties);
 
     // Fill vkPhysicalDeviceFeatures
     memset(&vkPhysicalDeviceFeatures, 0, sizeof(VkPhysicalDeviceFeatures));
@@ -816,20 +816,20 @@ VkResult GetPhysicalDevice(void)
     
     if (vkPhysicalDeviceFeatures.tessellationShader == VK_TRUE)
     {
-        LOGF("Selected Physical device supports tesselation shader.");
+        LOGF("GetPhysicalDevice: Selected Physical device supports tesselation shader.");
     }
     else
     {
-        LOGF("Selected Physical device does not supports tesselation shader.");
+        LOGF("GetPhysicalDevice: Selected Physical device does not supports tesselation shader.");
     }
 
     if (vkPhysicalDeviceFeatures.geometryShader == VK_TRUE)
     {
-        LOGF("Selected Physical device supports geometry shader.");
+        LOGF("GetPhysicalDevice: Selected Physical device supports geometry shader.");
     }
     else
     {
-        LOGF("Selected Physical device does not supports geometry shader.");
+        LOGF("GetPhysicalDevice: Selected Physical device does not supports geometry shader.");
     }
 
     return vkResult;

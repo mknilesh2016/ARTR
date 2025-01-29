@@ -12,9 +12,9 @@ GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded
 Initialize: GetSupportedSurface() succeded.
 GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.
 GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.
-GetPhysicalDevice: Found physical device 0000016D09E71200 with graphics queue at index 0.
-Selected Physical device supports tesselation shader.
-Selected Physical device supports geometry shader.
+GetPhysicalDevice: Found physical device 000001D612C330F0 with graphics queue at index 0.
+GetPhysicalDevice: Selected Physical device supports tesselation shader.
+GetPhysicalDevice: Selected Physical device supports geometry shader.
 Initialize: GetPhysicalDevice() succeded.
 WinMain: Initialize() succeded.
 Uninitialize: vkDestroySurfaceKHR succeded
