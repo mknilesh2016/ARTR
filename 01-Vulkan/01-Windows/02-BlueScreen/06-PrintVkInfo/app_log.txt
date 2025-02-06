@@ -29,6 +29,21 @@ CreateVulkanInstance: vkCreateInstance() succeded
 Initialize: CreateVulkanInstance() succeded.
 GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded
 Initialize: GetSupportedSurface() succeded.
+GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.
+GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.
+GetPhysicalDevice: Selected Physical device supports tesselation shader.
+GetPhysicalDevice: Selected Physical device supports geometry shader.
+Initialize: GetPhysicalDevice() succeded.
+************ Vukan Information ***********
+************* Device 0 ***************
+ApiVersion: 1.2.194
+Device Name: NVIDIA GeForce RTX 2070
+Driver Version: 127.92
+Device Type: Discrete GPU (dGPU)
+VendorId: 0x10de
+DeviceId: 0x1f07
+**************************************
+Initialize: PrintVkInfo() succeded.
 WinMain: Initialize() succeded.
 Uninitialize: vkDestroySurfaceKHR succeded
 Uninitialize: vkDestroyInstance succeded

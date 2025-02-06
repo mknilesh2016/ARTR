@@ -412,17 +412,17 @@ VkResult FillInstanceExtensionNames(void)
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
     uint32_t instanceExtensionCount = 0;
-    VkExtensionProperties* vkExtensionProperties_array = NULL;
-    char** instanceExtensionNames_array = NULL;
+    VkExtensionProperties *vkExtensionProperties_array = NULL;
+    char **instanceExtensionNames_array = NULL;
     VkBool32 vulkanSurfaceExtensionFound = VK_FALSE;
     VkBool32 vulkanWin32SurfaceExtensionFound = VK_FALSE;
 
     // Step-1: Find how many instance extenstions are supported by the vulkan driver of
     // this version and keep in local variable
     vkResult = vkEnumerateInstanceExtensionProperties(
-        NULL,                       // pLayerName is NULL for global extensions
-        &instanceExtensionCount,    // pPropertyCount
-        NULL);                      // pProperties
+        NULL,                    // pLayerName is NULL for global extensions
+        &instanceExtensionCount, // pPropertyCount
+        NULL);                   // pProperties
     if (vkResult != VK_SUCCESS)
     {
         LOGF("FillInstanceExtensionNames: First call to vkEnumerateInstanceExtensionProperties() failed with %i.", vkResult);
@@ -434,7 +434,7 @@ VkResult FillInstanceExtensionNames(void)
     }
 
     // Step-2: Allocate and fill struct VkExtensionProperties array
-    vkExtensionProperties_array = (VkExtensionProperties*) malloc(instanceExtensionCount * sizeof(VkExtensionProperties));
+    vkExtensionProperties_array = (VkExtensionProperties *)malloc(instanceExtensionCount * sizeof(VkExtensionProperties));
     if (vkExtensionProperties_array == NULL)
     {
         LOGF("FillInstanceExtensionNames: Unable to allocate VkExtensionProperties array");
@@ -455,13 +455,14 @@ VkResult FillInstanceExtensionNames(void)
     }
 
     // Step-3: Fill and display a local string array of extension names obtained from vkExtensionProperties_array
-    instanceExtensionNames_array = (char **)malloc(instanceExtensionCount * sizeof(char*));
+    instanceExtensionNames_array = (char **)malloc(instanceExtensionCount * sizeof(char *));
     if (instanceExtensionNames_array == NULL)
     {
         LOGF("FillInstanceExtensionNames: Unable to allocate instanceExtensionNames_array");
         free(vkExtensionProperties_array);
         return VK_ERROR_INITIALIZATION_FAILED;
     }
+    LOGF("FillInstanceExtensionNames: Supported instance extensions");
     for (uint32_t i = 0; i < instanceExtensionCount; ++i)
     {
         int extensionNameLength = strlen(vkExtensionProperties_array[i].extensionName) + 1;
@@ -469,7 +470,8 @@ VkResult FillInstanceExtensionNames(void)
         if (instanceExtensionNames_array[i] != NULL)
         {
             strcpy(instanceExtensionNames_array[i], vkExtensionProperties_array[i].extensionName);
-            instanceExtensionNames_array[i][extensionNameLength] = 0;
+            instanceExtensionNames_array[i][extensionNameLength - 1] = 0;
+            LOGF("%s", instanceExtensionNames_array[i]);
         }
     }
 
@@ -478,7 +480,7 @@ VkResult FillInstanceExtensionNames(void)
     vkExtensionProperties_array = NULL;
 
     // Step-5: Find whether aboce extension names contain our required two surface extensions
-    // and accordingly set 
+    // and accordingly set
     for (uint32_t i = 0; i < instanceExtensionCount; ++i)
     {
         // Break out of loop if all surface extensions found
@@ -488,14 +490,14 @@ VkResult FillInstanceExtensionNames(void)
             break;
         }
 
-        if (vulkanSurfaceExtensionFound == VK_FALSE && 
+        if (vulkanSurfaceExtensionFound == VK_FALSE &&
             strcmp(instanceExtensionNames_array[i], VK_KHR_SURFACE_EXTENSION_NAME) == 0)
         {
             vulkanSurfaceExtensionFound = VK_TRUE;
             enabledInstanceExtensionNames_array[enabledInstanceExtensionCount++] = VK_KHR_SURFACE_EXTENSION_NAME;
         }
         else if (vulkanWin32SurfaceExtensionFound == VK_FALSE &&
-            strcmp(instanceExtensionNames_array[i], VK_KHR_WIN32_SURFACE_EXTENSION_NAME) == 0)
+                 strcmp(instanceExtensionNames_array[i], VK_KHR_WIN32_SURFACE_EXTENSION_NAME) == 0)
         {
             vulkanWin32SurfaceExtensionFound = VK_TRUE;
             enabledInstanceExtensionNames_array[enabledInstanceExtensionCount++] = VK_KHR_WIN32_SURFACE_EXTENSION_NAME;

@@ -2,8 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   SimpleWindow
-//              Based on IntegratedWindow Template by Pooja Waghmare
+// Program	:   05-PhysicalDevice based on 04-PresentationSurface
 // 
 // ************************************************************************* //
 
@@ -50,6 +49,16 @@ uint32_t enabledInstanceExtensionCount = 0;
 const char* enabledInstanceExtensionNames_array[2];
 // Vulkan instance
 VkInstance vkInstance = VK_NULL_HANDLE;
+// Vulkan Presentation Surface
+VkSurfaceKHR vkSurfaceKHR = VK_NULL_HANDLE;
+// Vulkan physical device related global variables
+VkPhysicalDevice vkPhysicalDevice_selected = VK_NULL_HANDLE;
+uint32_t graphicsQueueFamilyIndex_selected = UINT32_MAX;
+VkPhysicalDeviceMemoryProperties vkPhysicalDeviceMemoryProperties;
+VkPhysicalDeviceFeatures vkPhysicalDeviceFeatures;
+// Added in this version
+uint32_t physicalDeviceCount = 0;
+VkPhysicalDevice *vkPhysicalDevices_array = NULL;
 
 // Entry point function
 int wWinMain(
@@ -309,6 +318,9 @@ VkResult Initialize(void)
 {
     // Function declarations
     VkResult CreateVulkanInstance(void);
+    VkResult GetSupportedSurface(void);
+    VkResult GetPhysicalDevice(void);
+    VkResult PrintVkInfo(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
@@ -323,6 +335,42 @@ VkResult Initialize(void)
     else
     {
         LOGF("Initialize: CreateVulkanInstance() succeded.");
+    }
+
+    // Create Vulkan presentation surface
+    vkResult = GetSupportedSurface();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: GetSupportedSurface() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: GetSupportedSurface() succeded.");
+    }
+
+    // Select required physical device and its queue family index
+    vkResult = GetPhysicalDevice();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: GetPhysicalDevice() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: GetPhysicalDevice() succeded.");
+    }
+
+    // Print vulkan info
+    vkResult = PrintVkInfo();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: PrintVkInfo() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: PrintVkInfo() succeded.");
     }
 
     return (vkResult);
@@ -360,6 +408,16 @@ void Uninitialize(void)
     if (gbFullScreen == TRUE)
     {
         ToggleFullScreen();
+    }
+
+    // No need to destroy selected physical device.
+
+    // Destroy vkSurfaceKHR if valid
+    if (vkSurfaceKHR != VK_NULL_HANDLE)
+    {
+        vkDestroySurfaceKHR(vkInstance, vkSurfaceKHR, NULL);
+        vkSurfaceKHR = NULL;
+        LOGF("Uninitialize: vkDestroySurfaceKHR succeded");
     }
 
     // Destroy vkInstance if valid
@@ -623,6 +681,237 @@ VkResult FillInstanceExtensionNames(void)
     {
         LOGF("FillInstanceExtensionNames: Enabled vulkan instance extension name = %s", enabledInstanceExtensionNames_array[i]);
     }
+
+    return vkResult;
+}
+
+VkResult GetSupportedSurface(void)
+{
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+    VkWin32SurfaceCreateInfoKHR vkWin32SurfaceCreateinfoKHR;
+
+    // Code
+    memset(&vkWin32SurfaceCreateinfoKHR, 0, sizeof(VkWin32SurfaceCreateInfoKHR));
+    vkWin32SurfaceCreateinfoKHR.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+    vkWin32SurfaceCreateinfoKHR.pNext = NULL;
+    vkWin32SurfaceCreateinfoKHR.flags = 0;
+    vkWin32SurfaceCreateinfoKHR.hinstance = (HINSTANCE)GetWindowLongPtr(ghwnd, GWLP_HINSTANCE);
+    vkWin32SurfaceCreateinfoKHR.hwnd = ghwnd;
+
+    vkResult = vkCreateWin32SurfaceKHR(vkInstance, &vkWin32SurfaceCreateinfoKHR, NULL, &vkSurfaceKHR);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("GetSupportedSurface: vkCreateWin32SurfaceKHR() failed with (%d)", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded");
+    }
+
+    return vkResult;
+}
+
+VkResult GetPhysicalDevice(void)
+{
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+    VkBool32 bFound = VK_FALSE;
+
+    // Code
+    vkResult = vkEnumeratePhysicalDevices(vkInstance, &physicalDeviceCount, NULL);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else if (physicalDeviceCount == 0)
+    {
+        LOGF("GetPhysicalDevice: vkEnumeratePhysicalDevices resulted into 0 physical devices");
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.");
+    }
+
+    // Allocate and initialize devices array
+    vkPhysicalDevices_array = (VkPhysicalDevice *)malloc(physicalDeviceCount * sizeof(VkPhysicalDevice));
+    if (vkPhysicalDevices_array == NULL)
+    {
+        LOGF("GetPhysicalDevice: Unable to allocate vkPhysicalDevices_array");
+        free(vkPhysicalDevices_array);
+        return VK_ERROR_INITIALIZATION_FAILED;
+    }
+
+    vkResult = vkEnumeratePhysicalDevices(vkInstance, &physicalDeviceCount, vkPhysicalDevices_array);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() failed with %i.", vkResult);
+        free(vkPhysicalDevices_array);
+        return (vkResult);
+    }
+    else if (physicalDeviceCount == 0)
+    {
+        LOGF("GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices resulted into 0 physical devices");
+        free(vkPhysicalDevices_array);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.");
+    }
+
+    for (uint32_t i = 0; i < physicalDeviceCount; ++i)
+    {
+        uint32_t queueCount = UINT32_MAX;
+        vkGetPhysicalDeviceQueueFamilyProperties(vkPhysicalDevices_array[i], &queueCount, NULL);
+
+        // A physical device mustt have at least one queue property. But we are checking still for correctness
+        if (queueCount > 0)
+        {
+            VkQueueFamilyProperties *vkQueueFamilyProperties_array = (VkQueueFamilyProperties *)malloc(queueCount * sizeof(VkQueueFamilyProperties));
+            VkBool32 *isQueueSurfaceSupported_array = NULL;
+            if (vkQueueFamilyProperties_array != NULL)
+            {
+                vkGetPhysicalDeviceQueueFamilyProperties(vkPhysicalDevices_array[i], &queueCount, vkQueueFamilyProperties_array);
+                isQueueSurfaceSupported_array = (VkBool32*) malloc (queueCount * sizeof(VkBool32));
+                if (isQueueSurfaceSupported_array != NULL)
+                {
+                    for (uint32_t j = 0; j < queueCount; ++j)
+                    {
+                        vkGetPhysicalDeviceSurfaceSupportKHR(vkPhysicalDevices_array[i], j, vkSurfaceKHR, &isQueueSurfaceSupported_array[j]);
+                    }
+
+                    // Select if the physical device supports GRAPHICS_BIT
+                    for (uint32_t j = 0; j < queueCount; ++j)
+                    {
+                        if (vkQueueFamilyProperties_array[j].queueFlags & VK_QUEUE_GRAPHICS_BIT &&
+                            isQueueSurfaceSupported_array[j] == VK_TRUE)
+                        {
+                            vkPhysicalDevice_selected = vkPhysicalDevices_array[i];
+                            graphicsQueueFamilyIndex_selected = j;
+                            bFound = VK_TRUE;
+                            break;
+                        }
+                    }
+                    free(isQueueSurfaceSupported_array);
+                    isQueueSurfaceSupported_array = NULL;
+                }
+                free(vkQueueFamilyProperties_array);
+                vkQueueFamilyProperties_array = NULL;
+            }
+        }
+
+        if (bFound == VK_TRUE)
+        {
+            break;
+        }
+    }
+
+    if (bFound != VK_TRUE)
+    {
+        LOGF("GetPhysicalDevice: Unable to locate physical device with graphics properties");
+        vkResult = VK_ERROR_INITIALIZATION_FAILED;
+
+        free(vkPhysicalDevices_array);
+        vkPhysicalDevices_array = NULL;
+        physicalDeviceCount = 0;
+
+        return vkResult;
+    }
+
+    // Fill vkPhysicalMemoryProperties
+    memset(&vkPhysicalDeviceMemoryProperties, 0, sizeof(VkPhysicalDeviceMemoryProperties));
+    vkGetPhysicalDeviceMemoryProperties(vkPhysicalDevice_selected, &vkPhysicalDeviceMemoryProperties);
+
+    // Fill vkPhysicalDeviceFeatures
+    memset(&vkPhysicalDeviceFeatures, 0, sizeof(VkPhysicalDeviceFeatures));
+    vkGetPhysicalDeviceFeatures(vkPhysicalDevice_selected, &vkPhysicalDeviceFeatures);
+    
+    if (vkPhysicalDeviceFeatures.tessellationShader == VK_TRUE)
+    {
+        LOGF("GetPhysicalDevice: Selected Physical device supports tesselation shader.");
+    }
+    else
+    {
+        LOGF("GetPhysicalDevice: Selected Physical device does not supports tesselation shader.");
+    }
+
+    if (vkPhysicalDeviceFeatures.geometryShader == VK_TRUE)
+    {
+        LOGF("GetPhysicalDevice: Selected Physical device supports geometry shader.");
+    }
+    else
+    {
+        LOGF("GetPhysicalDevice: Selected Physical device does not supports geometry shader.");
+    }
+
+    return vkResult;
+}
+
+VkResult PrintVkInfo(void)
+{
+    // Function declarations
+
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+
+    // Code
+    LOGF("************ Vukan Information ***********");
+
+    for (uint32_t i = 0; i < physicalDeviceCount; ++i)
+    {
+        LOGF("************* Device %d ***************", i);
+
+        VkPhysicalDeviceProperties vkPhysicalDeviceProperties;
+        memset(&vkPhysicalDeviceProperties, 0, sizeof(VkPhysicalDeviceProperties));
+        vkGetPhysicalDeviceProperties(vkPhysicalDevices_array[i], &vkPhysicalDeviceProperties);
+
+        // API Version
+        uint32_t majorVersion = VK_API_VERSION_MAJOR(vkPhysicalDeviceProperties.apiVersion);
+        uint32_t minorVersion = VK_API_VERSION_MINOR(vkPhysicalDeviceProperties.apiVersion);
+        uint32_t patchVersion = VK_API_VERSION_PATCH(vkPhysicalDeviceProperties.apiVersion);
+        LOGF("ApiVersion: %d.%d.%d", majorVersion, minorVersion, patchVersion);
+        // Device Name
+        LOGF("Device Name: %s", vkPhysicalDeviceProperties.deviceName);
+        // Driver Version
+        uint32_t driverMajorVersion = VK_API_VERSION_MAJOR(vkPhysicalDeviceProperties.driverVersion);
+        uint32_t driverMinorVersion = VK_API_VERSION_MINOR(vkPhysicalDeviceProperties.driverVersion);
+        LOGF("Driver Version: %d.%d", driverMajorVersion, driverMinorVersion);
+        // Device Tyoe
+        switch (vkPhysicalDeviceProperties.deviceType)
+        {
+            case VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU:
+                LOGF("Device Type: Integrated GPU (iGPU)");
+                break;
+            case VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU:
+                LOGF("Device Type: Discrete GPU (dGPU)");
+                break;
+            case VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU:
+                LOGF("Device Type: Virtual GPU (vGPU)");
+                break;
+            case VK_PHYSICAL_DEVICE_TYPE_CPU:
+                LOGF("Device Type: CPU");
+                break;
+            case VK_PHYSICAL_DEVICE_TYPE_OTHER:
+                LOGF("Device Type: Other");
+                break;
+            default:
+                LOGF("Device Type: UNKNOWN");
+                break;
+        }
+        // VendorId
+        LOGF("VendorId: 0x%04x", vkPhysicalDeviceProperties.vendorID);
+        // DeviceId
+        LOGF("DeviceId: 0x%04x", vkPhysicalDeviceProperties.deviceID);
+    }
+    LOGF("**************************************");
+
+    // Free Physical Devices array
+    free(vkPhysicalDevices_array);
+    vkPhysicalDevices_array = NULL;
 
     return vkResult;
 }
