@@ -394,6 +394,8 @@ void Uninitialize(void)
         ToggleFullScreen();
     }
 
+    // No need to destroy selected physical device.
+
     // Destroy vkSurfaceKHR if valid
     if (vkSurfaceKHR != VK_NULL_HANDLE)
     {
