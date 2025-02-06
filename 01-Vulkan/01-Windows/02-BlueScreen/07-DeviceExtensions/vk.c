@@ -608,7 +608,7 @@ VkResult FillInstanceExtensionNames(void)
     }
     else
     {
-        LOGF("FillInstanceExtensionNames: Second call to vkEnumerateInstanceExtensionProperties() succeded.");
+        LOGF("FillInstanceExtensionNames: Second call to vkEnumerateInstanceExtensionProperties() succeded with %d instance extensions", instanceExtensionCount);
     }
 
     // Step-3: Fill and display a local string array of extension names obtained from vkExtensionProperties_array
@@ -750,7 +750,7 @@ VkResult GetPhysicalDevice(void)
     }
     else
     {
-        LOGF("GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.");
+        LOGF("GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded with %d devices.", physicalDeviceCount);
     }
 
     // Allocate and initialize devices array
@@ -799,6 +799,26 @@ VkResult GetPhysicalDevice(void)
                     for (uint32_t j = 0; j < queueCount; ++j)
                     {
                         vkGetPhysicalDeviceSurfaceSupportKHR(vkPhysicalDevices_array[i], j, vkSurfaceKHR, &isQueueSurfaceSupported_array[j]);
+                    }
+
+                    // Print Queue families
+#define STR(x) #x
+#define PRINT_IF_SUPPORTED(queueType)                                                                               \
+    if (isQueueSurfaceSupported_array[j] == VK_TRUE && (vkQueueFamilyProperties_array[j].queueFlags & queueType))   \
+        LOGF("\t\t%s", STR(queueType));
+
+                    LOGF("Device %d", i);
+                    for (uint32_t j = 0; j < queueCount; ++j)
+                    {
+                        LOGF("\tQueue (%d) : Flags => 0x%08X", j, vkQueueFamilyProperties_array[j].queueFlags);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_GRAPHICS_BIT);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_COMPUTE_BIT);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_TRANSFER_BIT);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_SPARSE_BINDING_BIT);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_PROTECTED_BIT);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_VIDEO_DECODE_BIT_KHR);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_VIDEO_ENCODE_BIT_KHR);
+                        PRINT_IF_SUPPORTED(VK_QUEUE_OPTICAL_FLOW_BIT_NV);
                     }
 
                     // Select if the physical device supports GRAPHICS_BIT
@@ -894,8 +914,8 @@ VkResult PrintVkInfo(void)
         // Device Name
         LOGF("Device Name: %s", vkPhysicalDeviceProperties.deviceName);
         // Driver Version
-        uint32_t driverMajorVersion = VK_API_VERSION_MAJOR(vkPhysicalDeviceProperties.driverVersion);
-        uint32_t driverMinorVersion = VK_API_VERSION_MINOR(vkPhysicalDeviceProperties.driverVersion);
+        uint32_t driverMajorVersion = VK_VERSION_MAJOR(vkPhysicalDeviceProperties.driverVersion);
+        uint32_t driverMinorVersion = VK_VERSION_MINOR(vkPhysicalDeviceProperties.driverVersion);
         LOGF("Driver Version: %d.%d", driverMajorVersion, driverMinorVersion);
         // Device Tyoe
         switch (vkPhysicalDeviceProperties.deviceType)
@@ -954,9 +974,14 @@ VkResult FillDeviceExtensionNames(void)
         LOGF("FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() failed with %i.", vkResult);
         return (vkResult);
     }
+    else if (deviceExtensionCount == 0)
+    {
+        LOGF("FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded with 0 exttensions");
+        return (vkResult);
+    }
     else
     {
-        LOGF("FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded.");
+        LOGF("FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded with %d device extensions.", deviceExtensionCount);
     }
 
     // Step-2: Allocate and fill struct VkExtensionProperties array

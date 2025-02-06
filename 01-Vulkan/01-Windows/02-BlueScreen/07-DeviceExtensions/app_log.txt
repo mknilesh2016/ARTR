@@ -1,6 +1,6 @@
 Log file created successfully.
 FillInstanceExtensionNames: First call to vkEnumerateInstanceExtensionProperties() succeded.
-FillInstanceExtensionNames: Second call to vkEnumerateInstanceExtensionProperties() succeded.
+FillInstanceExtensionNames: Second call to vkEnumerateInstanceExtensionProperties() succeded with 18 instance extensions
 FillInstanceExtensionNames: Supported instance extensions
 VK_KHR_device_group_creation
 VK_KHR_display
@@ -29,8 +29,19 @@ CreateVulkanInstance: vkCreateInstance() succeded
 Initialize: CreateVulkanInstance() succeded.
 GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded
 Initialize: GetSupportedSurface() succeded.
-GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded.
+GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded with 1 devices.
 GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.
+Device 0
+	Queue (0) : Flags => 0x0000000F
+		VK_QUEUE_GRAPHICS_BIT
+		VK_QUEUE_COMPUTE_BIT
+		VK_QUEUE_TRANSFER_BIT
+		VK_QUEUE_SPARSE_BINDING_BIT
+	Queue (1) : Flags => 0x0000000C
+	Queue (2) : Flags => 0x0000000E
+		VK_QUEUE_COMPUTE_BIT
+		VK_QUEUE_TRANSFER_BIT
+		VK_QUEUE_SPARSE_BINDING_BIT
 GetPhysicalDevice: Selected Physical device supports tesselation shader.
 GetPhysicalDevice: Selected Physical device supports geometry shader.
 Initialize: GetPhysicalDevice() succeded.
@@ -38,13 +49,13 @@ Initialize: GetPhysicalDevice() succeded.
 ************* Device 0 ***************
 ApiVersion: 1.2.194
 Device Name: NVIDIA GeForce RTX 2070
-Driver Version: 127.92
+Driver Version: 511.92
 Device Type: Discrete GPU (dGPU)
 VendorId: 0x10de
 DeviceId: 0x1f07
 **************************************
 Initialize: PrintVkInfo() succeded.
-FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded.
+FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded with 160 device extensions.
 FillDeviceExtensionNames: Second call to vkEnumerateDeviceExtensionProperties() succeded.
 FillDeviceExtensionNames: Supported device extensions
 VK_KHR_16bit_storage
