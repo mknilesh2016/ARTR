@@ -628,7 +628,7 @@ VkResult FillInstanceExtensionNames(void)
         {
             strcpy(instanceExtensionNames_array[i], vkExtensionProperties_array[i].extensionName);
             instanceExtensionNames_array[i][extensionNameLength-1] = 0;
-            LOGF("%s", instanceExtensionNames_array[i]);
+            LOGF("\t%s", instanceExtensionNames_array[i]);
         }
     }
 
@@ -807,7 +807,7 @@ VkResult GetPhysicalDevice(void)
     if (isQueueSurfaceSupported_array[j] == VK_TRUE && (vkQueueFamilyProperties_array[j].queueFlags & queueType))   \
         LOGF("\t\t%s", STR(queueType));
 
-                    LOGF("Device %d", i);
+                    LOGF("GetPhysicalDevice: Device %d", i);
                     for (uint32_t j = 0; j < queueCount; ++j)
                     {
                         LOGF("\tQueue (%d) : Flags => 0x%08X", j, vkQueueFamilyProperties_array[j].queueFlags);
@@ -866,7 +866,69 @@ VkResult GetPhysicalDevice(void)
     // Fill vkPhysicalDeviceFeatures
     memset(&vkPhysicalDeviceFeatures, 0, sizeof(VkPhysicalDeviceFeatures));
     vkGetPhysicalDeviceFeatures(vkPhysicalDevice_selected, &vkPhysicalDeviceFeatures);
-    
+
+    // Log supported features
+#define LOG_IF_SUPPORTED(feature)                    \
+    if (vkPhysicalDeviceFeatures.feature == VK_TRUE) \
+        LOGF("\t%s", STR(feature));
+
+    LOGF("GetPhysicalDevice: Features");
+    LOG_IF_SUPPORTED(robustBufferAccess);
+    LOG_IF_SUPPORTED(fullDrawIndexUint32);
+    LOG_IF_SUPPORTED(imageCubeArray);
+    LOG_IF_SUPPORTED(independentBlend);
+    LOG_IF_SUPPORTED(geometryShader);
+    LOG_IF_SUPPORTED(tessellationShader);
+    LOG_IF_SUPPORTED(sampleRateShading);
+    LOG_IF_SUPPORTED(dualSrcBlend);
+    LOG_IF_SUPPORTED(logicOp);
+    LOG_IF_SUPPORTED(multiDrawIndirect);
+    LOG_IF_SUPPORTED(drawIndirectFirstInstance);
+    LOG_IF_SUPPORTED(depthClamp);
+    LOG_IF_SUPPORTED(depthBiasClamp);
+    LOG_IF_SUPPORTED(fillModeNonSolid);
+    LOG_IF_SUPPORTED(depthBounds);
+    LOG_IF_SUPPORTED(wideLines);
+    LOG_IF_SUPPORTED(largePoints);
+    LOG_IF_SUPPORTED(alphaToOne);
+    LOG_IF_SUPPORTED(multiViewport);
+    LOG_IF_SUPPORTED(samplerAnisotropy);
+    LOG_IF_SUPPORTED(textureCompressionETC2);
+    LOG_IF_SUPPORTED(textureCompressionASTC_LDR);
+    LOG_IF_SUPPORTED(textureCompressionBC);
+    LOG_IF_SUPPORTED(occlusionQueryPrecise);
+    LOG_IF_SUPPORTED(pipelineStatisticsQuery);
+    LOG_IF_SUPPORTED(vertexPipelineStoresAndAtomics);
+    LOG_IF_SUPPORTED(fragmentStoresAndAtomics);
+    LOG_IF_SUPPORTED(shaderTessellationAndGeometryPointSize);
+    LOG_IF_SUPPORTED(shaderImageGatherExtended);
+    LOG_IF_SUPPORTED(shaderStorageImageExtendedFormats);
+    LOG_IF_SUPPORTED(shaderStorageImageMultisample);
+    LOG_IF_SUPPORTED(shaderStorageImageReadWithoutFormat);
+    LOG_IF_SUPPORTED(shaderStorageImageWriteWithoutFormat);
+    LOG_IF_SUPPORTED(shaderUniformBufferArrayDynamicIndexing);
+    LOG_IF_SUPPORTED(shaderSampledImageArrayDynamicIndexing);
+    LOG_IF_SUPPORTED(shaderStorageBufferArrayDynamicIndexing);
+    LOG_IF_SUPPORTED(shaderStorageImageArrayDynamicIndexing);
+    LOG_IF_SUPPORTED(shaderClipDistance);
+    LOG_IF_SUPPORTED(shaderCullDistance);
+    LOG_IF_SUPPORTED(shaderFloat64);
+    LOG_IF_SUPPORTED(shaderInt64);
+    LOG_IF_SUPPORTED(shaderInt16);
+    LOG_IF_SUPPORTED(shaderResourceResidency);
+    LOG_IF_SUPPORTED(shaderResourceMinLod);
+    LOG_IF_SUPPORTED(sparseBinding);
+    LOG_IF_SUPPORTED(sparseResidencyBuffer);
+    LOG_IF_SUPPORTED(sparseResidencyImage2D);
+    LOG_IF_SUPPORTED(sparseResidencyImage3D);
+    LOG_IF_SUPPORTED(sparseResidency2Samples);
+    LOG_IF_SUPPORTED(sparseResidency4Samples);
+    LOG_IF_SUPPORTED(sparseResidency8Samples);
+    LOG_IF_SUPPORTED(sparseResidency16Samples);
+    LOG_IF_SUPPORTED(sparseResidencyAliased);
+    LOG_IF_SUPPORTED(variableMultisampleRate);
+    LOG_IF_SUPPORTED(inheritedQueries);
+
     if (vkPhysicalDeviceFeatures.tessellationShader == VK_TRUE)
     {
         LOGF("GetPhysicalDevice: Selected Physical device supports tesselation shader.");
@@ -1023,7 +1085,7 @@ VkResult FillDeviceExtensionNames(void)
         {
             strcpy(deviceExtensionNames_array[i], vkExtensionProperties_array[i].extensionName);
             deviceExtensionNames_array[i][extensionNameLength-1] = 0;
-            LOGF("%s", deviceExtensionNames_array[i]);
+            LOGF("\t%s", deviceExtensionNames_array[i]);
         }
     }
 
