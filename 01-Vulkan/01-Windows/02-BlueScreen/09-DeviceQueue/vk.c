@@ -1197,7 +1197,8 @@ VkResult CreateVulkanDevice(void)
     vkDeviceQueueCreateInfo.flags = 0;
     vkDeviceQueueCreateInfo.queueCount = 1;
     vkDeviceQueueCreateInfo.queueFamilyIndex = graphicsQueueFamilyIndex_selected;
-    vkDeviceQueueCreateInfo.pQueuePriorities = NULL;
+    float queuePriorities = 1.0f;
+    vkDeviceQueueCreateInfo.pQueuePriorities = &queuePriorities;
 
     // Create device
     VkDeviceCreateInfo vkDeviceCreateInfo;
