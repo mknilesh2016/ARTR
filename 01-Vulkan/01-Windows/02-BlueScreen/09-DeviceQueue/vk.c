@@ -1189,6 +1189,10 @@ VkResult CreateVulkanDevice(void)
         LOGF("CreateVulkanDevice: FillDeviceExtensionNames() succeded.");
     }
 
+    // Set high priority for the proposed device queue family
+    float queuePriorities[1];
+    queuePriorities[0] = 1.0f;
+
     // Create queue on selected queue family at the point of device creation
     VkDeviceQueueCreateInfo vkDeviceQueueCreateInfo;
     memset(&vkDeviceQueueCreateInfo, 0, sizeof(VkDeviceQueueCreateInfo));
@@ -1197,8 +1201,7 @@ VkResult CreateVulkanDevice(void)
     vkDeviceQueueCreateInfo.flags = 0;
     vkDeviceQueueCreateInfo.queueCount = 1;
     vkDeviceQueueCreateInfo.queueFamilyIndex = graphicsQueueFamilyIndex_selected;
-    float queuePriorities = 1.0f;
-    vkDeviceQueueCreateInfo.pQueuePriorities = &queuePriorities;
+    vkDeviceQueueCreateInfo.pQueuePriorities = queuePriorities;
 
     // Create device
     VkDeviceCreateInfo vkDeviceCreateInfo;
