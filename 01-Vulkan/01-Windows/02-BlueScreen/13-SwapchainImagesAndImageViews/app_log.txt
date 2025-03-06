@@ -376,9 +376,19 @@ GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
 CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
 CreateSwapchain: vkCreateSwapchainKHR() succeded.
 Initialize: CreateSwapchain() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+Initialize: CreateImagesAndImageViews() succeded.
 WinMain: Initialize() succeded.
 Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0
+Destroyed swapchain image view 0
+Destroyed swapchain image view 1
+freed swapchainImageView_array
+No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage
+freed swapchainImage_array
 Uninitialize: destroying swapchain
 Uninitialize: swapchain destroyed
 Uninitialize: vkDestroyDevice is done

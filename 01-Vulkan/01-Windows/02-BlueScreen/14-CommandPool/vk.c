@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   10-SurfaceFormatAndSurfaceColorSpace based on 09-DeviceQueue
+// Program	:   14-CommandPool
 // 
 // ************************************************************************* //
 
@@ -77,6 +77,12 @@ int winWidth = WINDOW_WIDTH;
 int winHeight = WINDOW_HEIGHT;
 VkSwapchainKHR vkSwapchainKHR = VK_NULL_HANDLE;
 VkExtent2D vkExtent2D_swapchain;
+// Swapchain Images and Image Views related variables
+uint32_t swapchainImageCount = UINT32_MAX;
+VkImage* swapchainImage_array = NULL;
+VkImageView* swapchainImageView_array = NULL;
+// Command pool related variable
+VkCommandPool vkCommandPool = VK_NULL_HANDLE;
 
 // Entry point function
 int wWinMain(
@@ -344,6 +350,8 @@ VkResult Initialize(void)
     VkResult GetPhysicalDeviceSurfaceFormatAndColorSpace(void);
     VkResult GetPhysicalDevicePresentMode(void);
     VkResult CreateSwapchain(VkBool32);
+    VkResult CreateImagesAndImageViews(void);
+    VkResult CreateCommandPool(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
@@ -451,6 +459,30 @@ VkResult Initialize(void)
         LOGF("Initialize: CreateSwapchain() succeded.");
     }
 
+    // Create images and imageViews
+    vkResult = CreateImagesAndImageViews();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateImagesAndImageViews() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateImagesAndImageViews() succeded.");
+    }
+
+    // Create command pool
+    vkResult = CreateCommandPool();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateCommandPool() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateCommandPool() succeded.");
+    }
+
     return (vkResult);
 }
 
@@ -506,6 +538,47 @@ void Uninitialize(void)
         //         VK_ERROR_DEVICE_LOST
         LOGF("Uninitialize: vkDeviceWaitIdle returned %i", vkResult);
 
+        if (vkCommandPool != VK_NULL_HANDLE)
+        {
+            LOGF("Destroying command pool");
+            vkDestroyCommandPool(vkDevice, vkCommandPool, NULL);
+            vkCommandPool = VK_NULL_HANDLE;
+            LOGF("Command pool destroyed");
+        }
+
+        // Destroy and free Image views
+        if (swapchainImageView_array != NULL)
+        {
+            for (uint32_t i = 0; i < swapchainImageCount; ++i)
+            {
+                if (swapchainImageView_array[i] != VK_NULL_HANDLE)
+                {
+                    vkDestroyImageView(vkDevice, swapchainImageView_array[i], NULL);
+                    LOGF("Destroyed swapchain image view %d", i);
+                }
+            }
+            if (swapchainImageView_array)
+            {
+                free(swapchainImageView_array);
+                swapchainImageView_array = NULL;
+            }
+            LOGF("freed swapchainImageView_array");
+        }
+
+        // Destroy and free swapchain images
+        if (swapchainImage_array != NULL)
+        {
+            // No need to destroy VkImage after destroying VkImageView
+            // Since VkImage would be destroyed after destroying VkImageView
+            LOGF("No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage");
+            if (swapchainImage_array)
+            {
+                free(swapchainImage_array);
+                swapchainImage_array = NULL;
+            }
+            LOGF("freed swapchainImage_array");
+        }
+
         // Destroy swapchain
         if (vkSwapchainKHR != VK_NULL_HANDLE)
         {
@@ -514,7 +587,7 @@ void Uninitialize(void)
             LOGF("Uninitialize: swapchain destroyed");
             vkSwapchainKHR = VK_NULL_HANDLE;
         }
-        
+
         vkDestroyDevice(vkDevice, NULL);
         vkDevice = VK_NULL_HANDLE;
 
@@ -1980,6 +2053,139 @@ VkResult CreateSwapchain(VkBool32 vSync)
     else
     {
         LOGF("CreateSwapchain: vkCreateSwapchainKHR() succeded.");
+    }
+
+    return vkResult;
+}
+
+VkResult CreateImagesAndImageViews(void)
+{
+    // Function declarations
+
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    // Get swapchain image count
+    vkResult = vkGetSwapchainImagesKHR(vkDevice, vkSwapchainKHR, &swapchainImageCount, NULL);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateImagesAndImageViews: first call to vkGetSwapchainImagesKHR() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else if (swapchainImageCount == 0)
+    {
+        LOGF("CreateImagesAndImageViews: first call to vkGetSwapchainImagesKHR() returned 0 image count.");
+        return (VK_ERROR_INITIALIZATION_FAILED);
+    }
+    else
+    {
+        LOGF("CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with %d images", swapchainImageCount);
+    }
+
+    // Allocate memory
+    swapchainImage_array = (VkImage*) malloc(swapchainImageCount * sizeof(VkImage));
+    if (swapchainImage_array == NULL)
+    {
+        LOGF("CreateImagesAndImageViews: failed to allocate swapchainImage_array.");
+        return (VK_ERROR_INITIALIZATION_FAILED);
+    }
+
+    // Fill this array by swapchain images
+    vkResult = vkGetSwapchainImagesKHR(vkDevice, vkSwapchainKHR, &swapchainImageCount, swapchainImage_array);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateImagesAndImageViews: second call to vkGetSwapchainImagesKHR() failed with %i.", vkResult);
+        free(swapchainImage_array);
+        swapchainImage_array = NULL;
+        return (vkResult);
+    }
+    else if (swapchainImageCount == 0)
+    {
+        LOGF("CreateImagesAndImageViews: second call to vkGetSwapchainImagesKHR() returned 0 image count.");
+        free(swapchainImage_array);
+        swapchainImage_array = NULL;
+        return (VK_ERROR_INITIALIZATION_FAILED);
+    }
+    else
+    {
+        LOGF("CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with %d images", swapchainImageCount);
+    }
+
+    // allocate array of swapchain image views
+    swapchainImageView_array = (VkImageView *)malloc(swapchainImageCount * sizeof(VkImageView));
+    if (swapchainImageView_array == NULL)
+    {
+        LOGF("CreateImagesAndImageViews: failed to allocate swapchainImageView_array.");
+        return (VK_ERROR_INITIALIZATION_FAILED);
+    }
+
+    // Initialize VkImageViewCreateInfo structure
+    VkImageViewCreateInfo vkImageViewCreateInfo;
+    memset(&vkImageViewCreateInfo, 0, sizeof(VkImageViewCreateInfo));
+    vkImageViewCreateInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
+    vkImageViewCreateInfo.pNext = NULL;
+    vkImageViewCreateInfo.flags = 0;
+    vkImageViewCreateInfo.format = vkFormat_color;
+    // VkComponentMapping
+    vkImageViewCreateInfo.components.r = VK_COMPONENT_SWIZZLE_R; // type enum VkComponentSwizzle
+    vkImageViewCreateInfo.components.g = VK_COMPONENT_SWIZZLE_G;
+    vkImageViewCreateInfo.components.b = VK_COMPONENT_SWIZZLE_B;
+    vkImageViewCreateInfo.components.a = VK_COMPONENT_SWIZZLE_A;
+    // VkImageSubresourceRange
+    // AspectMask: which part of the image is affected by image barrier
+    vkImageViewCreateInfo.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+    //
+    vkImageViewCreateInfo.subresourceRange.baseMipLevel = 0;
+    //
+    vkImageViewCreateInfo.subresourceRange.levelCount = 1;
+    //
+    vkImageViewCreateInfo.subresourceRange.baseArrayLayer = 0;
+    // 
+    vkImageViewCreateInfo.subresourceRange.layerCount = 1;
+    vkImageViewCreateInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
+
+    // Fill Image view array using above struct
+    for (uint32_t i = 0; i < swapchainImageCount; ++i)
+    {
+        vkImageViewCreateInfo.image = swapchainImage_array[i];
+        vkResult = vkCreateImageView(vkDevice, &vkImageViewCreateInfo, NULL, &swapchainImageView_array[i]);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("CreateImagesAndImageViews: vkCreateImageView failed for iteration %d with %d", i, vkResult);
+            break;
+        }
+        else
+        {
+            LOGF("CreateImagesAndImageViews: vkCreateImageView succeded for iteration %d", i);
+        }
+    }
+
+    // Code
+    return vkResult;
+}
+
+VkResult CreateCommandPool(void)
+{
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    VkCommandPoolCreateInfo vkCommandPoolCreateInfo;
+    memset(&vkCommandPoolCreateInfo, 0, sizeof(VkCommandPoolCreateInfo));
+    vkCommandPoolCreateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+    vkCommandPoolCreateInfo.pNext = NULL;
+    vkCommandPoolCreateInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+    vkCommandPoolCreateInfo.queueFamilyIndex = graphicsQueueFamilyIndex_selected;
+
+    vkResult = vkCreateCommandPool(vkDevice, &vkCommandPoolCreateInfo, NULL, &vkCommandPool);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateCommandPool: vkCreateCommandPool failed with %d", vkResult);
+        return vkResult;
+    }
+    else if (vkCommandPool == VK_NULL_HANDLE)
+    {
+        LOGF("CreateCommandPool: vkCreateCommandPool returned NULL command pool handle");
+        return VK_ERROR_INITIALIZATION_FAILED;
     }
 
     return vkResult;
