@@ -580,22 +580,22 @@ void Uninitialize(void)
         {
             for (uint32_t i = 0; i < swapchainImageCount; ++i)
             {
-                LOGF("Freeing command buffer %d", i);
+                LOGF("Uninitialize: Freeing command buffer %d", i);
                 vkFreeCommandBuffers(vkDevice, vkCommandPool, 1, &vkCommandBuffer_array[i]);
             }
 
-            LOGF("Freeing vkCommandBuffer_array");
+            LOGF("Uninitialize: Freeing vkCommandBuffer_array");
             free(vkCommandBuffer_array);
             vkCommandBuffer_array = NULL;
-            LOGF("vkCommandBuffer_array freed");
+            LOGF("Uninitialize: vkCommandBuffer_array freed");
         }
 
         if (vkCommandPool != VK_NULL_HANDLE)
         {
-            LOGF("Destroying command pool");
+            LOGF("Uninitialize: Destroying command pool");
             vkDestroyCommandPool(vkDevice, vkCommandPool, NULL);
             vkCommandPool = VK_NULL_HANDLE;
-            LOGF("Command pool destroyed");
+            LOGF("Uninitialize: Command pool destroyed");
         }
 
         // Destroy and free Image views
@@ -606,7 +606,7 @@ void Uninitialize(void)
                 if (swapchainImageView_array[i] != VK_NULL_HANDLE)
                 {
                     vkDestroyImageView(vkDevice, swapchainImageView_array[i], NULL);
-                    LOGF("Destroyed swapchain image view %d", i);
+                    LOGF("Uninitialize: Destroyed swapchain image view %d", i);
                 }
             }
             if (swapchainImageView_array)
@@ -614,7 +614,7 @@ void Uninitialize(void)
                 free(swapchainImageView_array);
                 swapchainImageView_array = NULL;
             }
-            LOGF("freed swapchainImageView_array");
+            LOGF("Uninitialize: freed swapchainImageView_array");
         }
 
         // Destroy and free swapchain images
@@ -622,13 +622,13 @@ void Uninitialize(void)
         {
             // No need to destroy VkImage after destroying VkImageView
             // Since VkImage would be destroyed after destroying VkImageView
-            LOGF("No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage");
+            LOGF("Uninitialize: No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage");
             if (swapchainImage_array)
             {
                 free(swapchainImage_array);
                 swapchainImage_array = NULL;
             }
-            LOGF("freed swapchainImage_array");
+            LOGF("Uninitialize: freed swapchainImage_array");
         }
 
         // Destroy swapchain

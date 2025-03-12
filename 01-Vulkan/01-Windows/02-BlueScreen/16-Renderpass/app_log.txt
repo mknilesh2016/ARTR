@@ -389,17 +389,17 @@ Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0
 Uninitialize: Destroying vkRenderPass
 Uninitialize: vkRenderPass destroyed
-Freeing command buffer 0
-Freeing command buffer 1
-Freeing vkCommandBuffer_array
-vkCommandBuffer_array freed
-Destroying command pool
-Command pool destroyed
-Destroyed swapchain image view 0
-Destroyed swapchain image view 1
-freed swapchainImageView_array
-No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage
-freed swapchainImage_array
+Uninitialize: Freeing command buffer 0
+Uninitialize: Freeing command buffer 1
+Uninitialize: Freeing vkCommandBuffer_array
+Uninitialize: vkCommandBuffer_array freed
+Uninitialize: Destroying command pool
+Uninitialize: Command pool destroyed
+Uninitialize: Destroyed swapchain image view 0
+Uninitialize: Destroyed swapchain image view 1
+Uninitialize: freed swapchainImageView_array
+Uninitialize: No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage
+Uninitialize: freed swapchainImage_array
 Uninitialize: destroying swapchain
 Uninitialize: swapchain destroyed
 Uninitialize: vkDestroyDevice is done
