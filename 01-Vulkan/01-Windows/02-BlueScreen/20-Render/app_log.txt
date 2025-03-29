@@ -391,6 +391,17 @@ CreateFramebuffers: Created frame buffer 1
 Initialize: CreateFramebuffers() succeded.
 Initialize: CreateSemaphores() succeded.
 Initialize: CreateFences() succeded.
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Initialize: BuildCommandBuffers() succeded.
 WinMain: Initialize() succeded.
 Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0

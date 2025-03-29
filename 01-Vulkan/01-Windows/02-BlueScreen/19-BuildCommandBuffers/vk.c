@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   18-FencesAndSemaphores
+// Program	:   19-BuildCommandBuffer
 // 
 // ************************************************************************* //
 
@@ -94,6 +94,9 @@ VkSemaphore vkSemaphore_backBuffer = VK_NULL_HANDLE;
 VkSemaphore vkSemaphore_renderComplete = VK_NULL_HANDLE;
 // Fences
 VkFence* vkFence_array = NULL;
+// Build command buffer
+// Clear color values
+VkClearColorValue vkClearColorValue;
 
 // Entry point function
 int wWinMain(
@@ -368,6 +371,7 @@ VkResult Initialize(void)
     VkResult CreateFramebuffers(void);
     VkResult CreateSemaphores(void);
     VkResult CreateFences(void);
+    VkResult BuildCommandBuffers(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
@@ -557,6 +561,26 @@ VkResult Initialize(void)
     else
     {
         LOGF("Initialize: CreateFences() succeded.");
+    }
+
+    // Initialize clear color values analogous to glClearColor() to fill
+    // blue color with solid color
+    memset(&vkClearColorValue, 0, sizeof(VkClearColorValue));
+    vkClearColorValue.float32[0] = 0.0f;
+    vkClearColorValue.float32[1] = 0.0f;
+    vkClearColorValue.float32[2] = 1.0f;
+    vkClearColorValue.float32[3] = 1.0f;
+
+    // BuildCommandBuffers
+    vkResult = BuildCommandBuffers();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: BuildCommandBuffers() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: BuildCommandBuffers() succeded.");
     }
 
     return (vkResult);
@@ -2556,6 +2580,92 @@ VkResult CreateFences(void)
         {
             LOGF("CreateFences: Failed to allocate %dth fence. VkResult = %d", i, vkResult);
             break;
+        }
+    }
+
+    return vkResult;
+}
+
+VkResult BuildCommandBuffers(void)
+{
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    // Loop per swapchain images
+    for (uint32_t i = 0; i < swapchainImageCount; ++i)
+    {
+        // Reset command buffers
+        // Specifying 0 means that don't release the resources created by the command pool for this
+        // buffer. The command buffer is created from command pool
+        vkResult = vkResetCommandBuffer(vkCommandBuffer_array[i], 0);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("BuildCommandBuffers: Failed to reset %dth command buffer. VkResult = %d", i, vkResult);
+            break;
+        }
+        else
+        {
+            LOGF("BuildCommandBuffers: Resetted %dth command buffer.", i);
+        }
+
+        VkCommandBufferBeginInfo vkCommandBufferBeginInfo;
+        memset(&vkCommandBufferBeginInfo, 0, sizeof(VkCommandBufferBeginInfo));
+        vkCommandBufferBeginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+        vkCommandBufferBeginInfo.pNext = NULL;
+        vkCommandBufferBeginInfo.pInheritanceInfo = NULL;
+        vkCommandBufferBeginInfo.flags = 0; // we're not going to use this command buffer between multiple threads
+        vkResult = vkBeginCommandBuffer(vkCommandBuffer_array[i], &vkCommandBufferBeginInfo);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("BuildCommandBuffers: vkBeginCommandBuffer failed for %dth command buffer. VkResult = %d", i, vkResult);
+            break;
+        }
+        else
+        {
+            LOGF("BuildCommandBuffers: Begin %dth command buffer.", i);
+        }
+
+        // Set clear values
+        VkClearValue vkClearValue_array[1];
+        memset(vkClearValue_array, 0, sizeof(VkClearValue) * _ARRAYSIZE(vkClearValue_array));
+        vkClearValue_array[0].color = vkClearColorValue;
+
+        // Begin render pass
+        VkRenderPassBeginInfo vkRenderPassBeginInfo;
+        memset(&vkRenderPassBeginInfo, 0, sizeof(VkRenderPassBeginInfo));
+        vkRenderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+        vkRenderPassBeginInfo.pNext = NULL;
+        vkRenderPassBeginInfo.renderPass = vkRenderPass;
+        vkRenderPassBeginInfo.renderArea.offset.x = 0;
+        vkRenderPassBeginInfo.renderArea.offset.y = 0;
+        vkRenderPassBeginInfo.renderArea.extent.width = vkExtent2D_swapchain.width;
+        vkRenderPassBeginInfo.renderArea.extent.height = vkExtent2D_swapchain.height;
+        vkRenderPassBeginInfo.clearValueCount = _ARRAYSIZE(vkClearValue_array);
+        vkRenderPassBeginInfo.pClearValues = vkClearValue_array;
+        vkRenderPassBeginInfo.framebuffer = vkFrameBuffer_array[i];
+
+        LOGF("BuildCommandBuffers: vkCmdBeginRenderPass %dth command buffer.", i);
+
+        // VK_SUBPASS_CONTENTS_INLINE specifies that the contents of the subpass will be recorded inline in
+        // the primary command buffer, and secondary command buffers must not be executed within the subpass.
+        vkCmdBeginRenderPass(vkCommandBuffer_array[i], &vkRenderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+
+        // Here, we should call vulkan drawing functions
+
+        // End render pass
+        LOGF("BuildCommandBuffers: vkCmdEndRenderPass %dth command buffer.", i);
+        vkCmdEndRenderPass(vkCommandBuffer_array[i]);
+
+        // End command buffer recording
+        vkResult = vkEndCommandBuffer(vkCommandBuffer_array[i]);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("BuildCommandBuffers: vkEndCommandBuffer failed for %dth command buffer. VkResult = %d", i, vkResult);
+            break;
+        }
+        else
+        {
+            LOGF("BuildCommandBuffers: vkEndCommandBuffer %dth command buffer.", i);
         }
     }
 

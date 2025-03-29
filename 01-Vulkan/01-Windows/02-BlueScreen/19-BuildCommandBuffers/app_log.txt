@@ -405,10 +405,8 @@ Initialize: BuildCommandBuffers() succeded.
 WinMain: Initialize() succeded.
 Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0
-Uninitialize: Waiting for fence 0
 Uninitialize: Destroying fence 0
 Uninitialize: Destroyed fence 0
-Uninitialize: Waiting for fence 1
 Uninitialize: Destroying fence 1
 Uninitialize: Destroyed fence 1
 Uninitialize: Destroying vkSemaphore_renderComplete

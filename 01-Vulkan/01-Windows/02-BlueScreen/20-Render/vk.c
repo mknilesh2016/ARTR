@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   19-BuildCommandBuffer
+// Program	:   20-Render
 // 
 // ************************************************************************* //
 
@@ -97,6 +97,9 @@ VkFence* vkFence_array = NULL;
 // Build command buffer
 // Clear color values
 VkClearColorValue vkClearColorValue;
+// Render
+BOOL bInitialized = FALSE;
+uint32_t currentImageIndex = UINT32_MAX;
 
 // Entry point function
 int wWinMain(
@@ -108,7 +111,7 @@ int wWinMain(
 {
     // Function declarations
     VkResult Initialize(void);
-    void Display(void);
+    VkResult Display(void);
     void Update(void);
     void Uninitialize(void);
 
@@ -564,7 +567,7 @@ VkResult Initialize(void)
     }
 
     // Initialize clear color values analogous to glClearColor() to fill
-    // blue color with solid color
+    // blue color with opaque color
     memset(&vkClearColorValue, 0, sizeof(VkClearColorValue));
     vkClearColorValue.float32[0] = 0.0f;
     vkClearColorValue.float32[1] = 0.0f;
@@ -583,6 +586,9 @@ VkResult Initialize(void)
         LOGF("Initialize: BuildCommandBuffers() succeded.");
     }
 
+    // Initialization is completed
+    bInitialized = TRUE;
+
     return (vkResult);
 }
 
@@ -597,9 +603,96 @@ void Resize(int width, int height)
 }
 
 
-void Display(void)
+VkResult Display(void)
 {
+    // Variable declarations
+    VkResult vkResult = VK_SUCCESS;
+
     // Code
+
+    // If control comes here before initialization is completed return
+    if (bInitialized == FALSE)
+    {
+        LOGF("Display: Initialization yet not completed.");
+        return (VkResult) VK_FALSE;
+    }
+
+    // Acquire index of next swapchain image
+    vkResult = vkAcquireNextImageKHR(
+        vkDevice,
+        vkSwapchainKHR,
+        UINT64_MAX,                 // Timeout in nanoseconds
+        vkSemaphore_backBuffer,     // Semaphore: it is waiting for releasing the semaphore held by another queue
+        VK_NULL_HANDLE,             // Fence
+        &currentImageIndex);
+    // This function would retrn VK_NOT_READY on timeout
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: vkAcquireNextImageKHR() failed with %i.", vkResult);
+        return (vkResult);
+    }
+
+    // Wait for the previous operation on this swapchain image to complete
+    vkResult = vkWaitForFences(vkDevice, 1, &vkFence_array[currentImageIndex], VK_TRUE, UINT64_MAX);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: vkWaitForFences() failed with %i.", vkResult);
+        return (vkResult);
+    }
+
+    // Now ready the fences for execution of next command buffer
+    vkResult = vkResetFences(vkDevice, 1, &vkFence_array[currentImageIndex]);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: vkResetFences() for %d failed with %i.", currentImageIndex, vkResult);
+        return (vkResult);
+    }
+
+    // One of the member of vkSubmitInfo structure require array of pipeline stages. We have only one of completion of color attachment output;
+    // still we need one member array
+    const VkPipelineStageFlags waitDstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+
+    // Declare, memset and initialize VkSubmitInfo structure
+    VkSubmitInfo vkSubmitInfo;
+    memset(&vkSubmitInfo, 0, sizeof(VkSubmitInfo));
+    vkSubmitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    vkSubmitInfo.pNext = NULL;
+    vkSubmitInfo.pWaitDstStageMask = &waitDstStageMask;
+    vkSubmitInfo.waitSemaphoreCount = 1;
+    vkSubmitInfo.pWaitSemaphores = &vkSemaphore_backBuffer;
+    vkSubmitInfo.commandBufferCount = 1;
+    vkSubmitInfo.pCommandBuffers = &vkCommandBuffer_array[currentImageIndex];
+    vkSubmitInfo.signalSemaphoreCount = 1;
+    vkSubmitInfo.pSignalSemaphores = &vkSemaphore_renderComplete;
+
+    // Now submit above work to the queue
+    vkResult = vkQueueSubmit(vkQueue, 1, &vkSubmitInfo, vkFence_array[currentImageIndex]);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: vkQueueSubmit() for %d failed with %i.", currentImageIndex, vkResult);
+        return (vkResult);
+    }
+
+    // We're going to present the rendered image after preparing VkPresentInfoKHR structure
+    VkPresentInfoKHR vkPresentInfoKHR;
+    memset(&vkPresentInfoKHR, 0, sizeof(VkPresentInfoKHR));
+    vkPresentInfoKHR.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
+    vkPresentInfoKHR.pNext = NULL;
+    vkPresentInfoKHR.swapchainCount = 1;
+    vkPresentInfoKHR.pSwapchains = &vkSwapchainKHR;
+    vkPresentInfoKHR.pImageIndices = &currentImageIndex;
+    vkPresentInfoKHR.waitSemaphoreCount = 1;
+    vkPresentInfoKHR.pWaitSemaphores = &vkSemaphore_renderComplete;
+    
+    // Now present the images
+    vkResult = vkQueuePresentKHR(vkQueue, &vkPresentInfoKHR);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: vkQueuePresentKHR() for %d failed with %i.", currentImageIndex, vkResult);
+        return (vkResult);
+    }
+
+    return vkResult;
 }
 
 
@@ -645,14 +738,6 @@ void Uninitialize(void)
             {
                 if (vkFence_array[i] != VK_NULL_HANDLE)
                 {
-                    // Wait for this fence
-                    LOGF("Uninitialize: Waiting for fence %d", i);
-                    vkResult = vkWaitForFences(vkDevice, 1, &vkFence_array[i], VK_TRUE, 0);
-                    if (vkResult != VK_SUCCESS)
-                    {
-                        // TODO handle vkResult
-                        LOGF("Uninitialize: Waiting for fence %d returned %d", i, vkResult);
-                    }
                     LOGF("Uninitialize: Destroying fence %d", i);
                     vkDestroyFence(vkDevice, vkFence_array[i], NULL);
                     LOGF("Uninitialize: Destroyed fence %d", i);
