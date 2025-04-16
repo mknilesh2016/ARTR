@@ -839,9 +839,17 @@ void Uninitialize(void)
         // Destroy and free swapchain images
         if (swapchainImage_array != NULL)
         {
-            // No need to destroy VkImage after destroying VkImageView
-            // Since VkImage would be destroyed after destroying VkImageView
-            LOGF("Uninitialize: No need to destroy VkImage after destroying VkImageView since destroying later would destroy VkImage");
+            // for (uint32_t i = 0; i < swapchainImageCount; ++i)
+            // {
+            //     if (swapchainImage_array[i] != VK_NULL_HANDLE)
+            //     {
+            //         vkDestroyImage(vkDevice, swapchainImage_array[i], NULL);
+            //         LOGF("Uninitialize: Destroyed swapchain image %d", i);
+            //     }
+            // }
+            // No need to destroy VkImage after destroying VkImageView for swapchain images
+            // The images associated with swapchain would be freed by vkDestroySwapchainKHR()
+            LOGF("Uninitialize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()");
             if (swapchainImage_array)
             {
                 free(swapchainImage_array);

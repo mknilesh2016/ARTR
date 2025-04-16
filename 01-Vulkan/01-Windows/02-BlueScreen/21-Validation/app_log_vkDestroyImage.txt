@@ -455,11 +455,14 @@ Uninitialize: Command pool destroyed
 Uninitialize: Destroyed swapchain image view 0
 Uninitialize: Destroyed swapchain image view 1
 Uninitialize: freed swapchainImageView_array
+NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-vkDestroyImage-image-04882 ] Object 0: handle = 0xf56c9b0000000004, type = VK_OBJECT_TYPE_IMAGE; | MessageID = 0xd636e760 | vkDestroyImage(): image VkImage 0xf56c9b0000000004[] is a presentable image controlled by the implementation and must be destroyed with vkDestroySwapchainKHR.
+The Vulkan spec states: image must not have been acquired from vkGetSwapchainImagesKHR (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-vkDestroyImage-image-04882)
+Uninitialize: Destroyed swapchain image 0
+NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-vkDestroyImage-image-04882 ] Object 0: handle = 0xe7f79a0000000005, type = VK_OBJECT_TYPE_IMAGE; | MessageID = 0xd636e760 | vkDestroyImage(): image VkImage 0xe7f79a0000000005[] is a presentable image controlled by the implementation and must be destroyed with vkDestroySwapchainKHR.
+The Vulkan spec states: image must not have been acquired from vkGetSwapchainImagesKHR (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-vkDestroyImage-image-04882)
+Uninitialize: Destroyed swapchain image 1
 Uninitialize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
 Uninitialize: freed swapchainImage_array
 Uninitialize: destroying swapchain
-Uninitialize: swapchain destroyed
-Uninitialize: vkDestroyDevice is done
-Uninitialize: vkDestroySurfaceKHR succeded
-Uninitialize: vkDestroyInstance succeded
-Uninitialize: Log file successfully closed.
+NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ UNASSIGNED-Threading-Info ] Object 0: handle = 0xf56c9b0000000004, type = VK_OBJECT_TYPE_IMAGE; | MessageID = 0x5d6b67e2 | vkDestroySwapchainKHR(): Couldn't find VkImage Object 0xf56c9b0000000004. This should not happen and may indicate a bug in the application.
+NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ UNASSIGNED-Threading-Info ] Object 0: handle = 0xe7f79a0000000005, type = VK_OBJECT_TYPE_IMAGE; | MessageID = 0x5d6b67e2 | vkDestroySwapchainKHR(): Couldn't find VkImage Object 0xe7f79a0000000005. This should not happen and may indicate a bug in the application.
