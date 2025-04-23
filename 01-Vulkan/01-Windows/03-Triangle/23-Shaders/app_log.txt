@@ -425,7 +425,7 @@ CreateShaders: Successfully read shader.vert.spv
 CreateShaders: vkCreateShaderModule for vertex shader succeded
 CreateShaders: vertex shader module created
 CreateShaders: Successfully opened shader.frag.spv
-CreateShaders: Successfully allocated buffer of size 372
+CreateShaders: Successfully allocated buffer of size 372 for fragment shader
 CreateShaders: Successfully read shader.frag.spv
 CreateShaders: vkCreateShaderModule for fragment shader succeded
 CreateShaders: fragment shader module created

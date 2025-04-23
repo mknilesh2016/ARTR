@@ -3043,7 +3043,7 @@ VkResult CreateShaders(void)
     if (size == 0)
     {
         fclose(fp);
-        LOGF("CreateShaders: returned SPIR-V size as 0");
+        LOGF("CreateShaders: returned SPIR-V size as 0 for fragment shader");
         return VK_ERROR_INITIALIZATION_FAILED;
     }
 
@@ -3051,12 +3051,12 @@ VkResult CreateShaders(void)
     if (shaderData == NULL)
     {
         fclose(fp);
-        LOGF("CreateShaders: Failed to allocate buffer of size %d", size);
+        LOGF("CreateShaders: Failed to allocate buffer of size %d for fragment shader", size);
         return VK_ERROR_INITIALIZATION_FAILED;
     }
     else
     {
-        LOGF("CreateShaders: Successfully allocated buffer of size %d", size);
+        LOGF("CreateShaders: Successfully allocated buffer of size %d for fragment shader", size);
     }
     retval = fread(shaderData, size, 1, fp);
     fclose(fp);
