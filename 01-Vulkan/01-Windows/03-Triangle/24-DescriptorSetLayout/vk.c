@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   23-Shaders
+// Program	:   24-DescriptorSetLayout
 // 
 // ************************************************************************* //
 
@@ -118,6 +118,8 @@ PFN_vkDestroyDebugReportCallbackEXT vkDestroyDebugReportCallbackEXTfnptr = NULL;
 // Shader related variables
 VkShaderModule vkShaderModule_vertex_shader = VK_NULL_HANDLE;
 VkShaderModule vkShaderModule_fragment_shader = VK_NULL_HANDLE;
+// Descriptor set layout
+VkDescriptorSetLayout vkDescriptorSetLayout = VK_NULL_HANDLE;
 
 // Entry point function
 int wWinMain(
@@ -390,6 +392,7 @@ VkResult Initialize(void)
     VkResult CreateCommandBuffers(void);
     VkResult CreateVertexBuffer(void);
     VkResult CreateShaders(void);
+    VkResult CreateDescriptorSetLayout(void);
     VkResult CreateRenderPass(void);
     VkResult CreateFramebuffers(void);
     VkResult CreateSemaphores(void);
@@ -562,6 +565,18 @@ VkResult Initialize(void)
         LOGF("Initialize: CreateShaders() succeded.");
     }
 
+    // Create Descriptor set layout
+    vkResult = CreateDescriptorSetLayout();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateDescriptorSetLayout() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateDescriptorSetLayout() succeded.");
+    }
+    
     // Create Render Pass
     vkResult = CreateRenderPass();
     if (vkResult != VK_SUCCESS)
@@ -822,6 +837,14 @@ void Uninitialize(void)
             free(vkFrameBuffer_array);
             vkFrameBuffer_array = NULL;
             LOGF("Uninitialize: Freed vkFrameBuffer_array");
+        }
+
+        if (vkDescriptorSetLayout != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Destroying vkDescriptorSetLayout");
+            vkDestroyDescriptorSetLayout(vkDevice, vkDescriptorSetLayout, NULL);
+            vkDescriptorSetLayout = VK_NULL_HANDLE;
+            LOGF("Uninitialize: vkDescriptorSetLayout destroyed");
         }
 
         if (vkRenderPass != VK_NULL_HANDLE)
@@ -3092,6 +3115,30 @@ VkResult CreateShaders(void)
     }
 
     LOGF("CreateShaders: fragment shader module created");
+
+    return vkResult;
+}
+
+VkResult CreateDescriptorSetLayout(void)
+{
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    // Code
+    VkDescriptorSetLayoutCreateInfo vkDescriptorSetLayoutCreateInfo;
+    memset(&vkDescriptorSetLayoutCreateInfo, 0, sizeof(VkDescriptorSetLayoutCreateInfo));
+    vkDescriptorSetLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
+    vkDescriptorSetLayoutCreateInfo.pNext = NULL;
+    vkDescriptorSetLayoutCreateInfo.flags = 0;
+    vkDescriptorSetLayoutCreateInfo.bindingCount = 0;
+    vkDescriptorSetLayoutCreateInfo.pBindings = NULL;
+
+    vkResult = vkCreateDescriptorSetLayout(vkDevice, &vkDescriptorSetLayoutCreateInfo, NULL, &vkDescriptorSetLayout);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateDescriptorSetLayout: vkCreateDescriptorSetLayout failed with %d", vkResult);
+        return vkResult;
+    }
 
     return vkResult;
 }
