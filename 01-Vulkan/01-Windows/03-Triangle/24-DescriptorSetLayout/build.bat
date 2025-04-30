@@ -3,8 +3,13 @@ if exist vk.exe (
     del vk.exe
 )
 
-C:\VulkanSDK\Bin\glslangValidator.exe -V -H -o shader.vert.spv shader.vert
-C:\VulkanSDK\Bin\glslangValidator.exe -V -H -o shader.frag.spv shader.frag
+rem compile shaders if not already
+if not exist "shader.vert.spv" (
+    C:\VulkanSDK\Bin\glslangValidator.exe -V -H -o shader.vert.spv shader.vert
+)
+if not exist "shader.frag.spv" (
+    C:\VulkanSDK\Bin\glslangValidator.exe -V -H -o shader.frag.spv shader.frag
+)
 
 cl.exe /c /EHsc /I "C:\VulkanSDK\Include" vk.c
 rc.exe vk.rc
