@@ -3176,6 +3176,7 @@ VkResult CreatePipelineLayout(void)
     memset(&vkPipelineLayoutCreateInfo, 0, sizeof(VkPipelineLayoutCreateInfo));
     vkPipelineLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
     vkPipelineLayoutCreateInfo.pNext = NULL;
+    vkPipelineLayoutCreateInfo.flags = 0;
     vkPipelineLayoutCreateInfo.setLayoutCount = 1;
     vkPipelineLayoutCreateInfo.pSetLayouts = &vkDescriptorSetLayout;
     vkPipelineLayoutCreateInfo.pushConstantRangeCount = 0;
