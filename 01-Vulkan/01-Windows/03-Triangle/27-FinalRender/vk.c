@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   26-Pipeline
+// Program	:   27-FinalRender
 // 
 // ************************************************************************* //
 
@@ -122,7 +122,6 @@ VkShaderModule vkShaderModule_fragment_shader = VK_NULL_HANDLE;
 VkDescriptorSetLayout vkDescriptorSetLayout = VK_NULL_HANDLE;
 // Pipeline layout
 VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
-
 // Pipeline
 VkViewport vkViewport;
 VkRect2D vkRect2D_scissor;
@@ -3351,7 +3350,6 @@ VkResult CreatePipeline(void)
     VkPipelineColorBlendAttachmentState vkPipelineColorBlendAttachmentState_array[1];
     memset(&vkPipelineColorBlendAttachmentState_array, 0, _ARRAYSIZE(vkPipelineColorBlendAttachmentState_array) * sizeof(VkPipelineColorBlendAttachmentState));
     vkPipelineColorBlendAttachmentState_array[0].blendEnable = VK_FALSE;
-
     /////////////////////////////////// Kata (No validation error, Andhaar if not specified .... ) //////////////////////////
     vkPipelineColorBlendAttachmentState_array[0].colorWriteMask = 0xF;
     /////////////////////////////////// Kata //////////////////////////
@@ -3673,7 +3671,16 @@ VkResult BuildCommandBuffers(void)
         // the primary command buffer, and secondary command buffers must not be executed within the subpass.
         vkCmdBeginRenderPass(vkCommandBuffer_array[i], &vkRenderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 
+        // Bind with the pipeline
+        vkCmdBindPipeline(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);
+
+        // Bind with the vertex buffer
+        VkDeviceSize vkDeviceSize_offset_array[1];
+        memset(vkDeviceSize_offset_array, 0, _ARRAYSIZE(vkDeviceSize_offset_array) * sizeof(VkDeviceSize));
+        vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position.vkBuffer, vkDeviceSize_offset_array);
+
         // Here, we should call vulkan drawing functions
+        vkCmdDraw(vkCommandBuffer_array[i], 3, 1, 0, 0);
 
         // End render pass
         LOGF("BuildCommandBuffers: vkCmdEndRenderPass %dth command buffer.", i);
