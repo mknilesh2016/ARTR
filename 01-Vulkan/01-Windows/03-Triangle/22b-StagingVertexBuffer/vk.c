@@ -2901,6 +2901,7 @@ VkResult CreateVertexBuffer(void)
     // Code
     // Step-I
     memset(&vertexData_stagingBuffer_position, 0, sizeof(VertexData));
+    memset(&vertexData_position, 0, sizeof(VertexData));
 
     VkBufferCreateInfo vkBufferCreateInfo_stagingBuffer;
     memset(&vertexData_stagingBuffer_position, 0, sizeof(VkBufferCreateInfo));
@@ -3064,9 +3065,6 @@ VkResult CreateVertexBuffer(void)
     LOGF("CreateVertexBuffer: unmapped staging vertex device memory");
 
     // Step-II: Create only device local memory
-    // Reset global variable
-    memset(&vertexData_position, 0, sizeof(VertexData));
-
     VkBufferCreateInfo vkBufferCreateInfo;
     memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
     vkBufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
