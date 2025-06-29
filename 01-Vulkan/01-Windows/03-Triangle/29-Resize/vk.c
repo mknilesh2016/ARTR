@@ -764,14 +764,6 @@ VkResult Resize(int width, int height)
         LOGF("Resize: vkPipeline destroyed");
     }
 
-    if (vkPipelineLayout != VK_NULL_HANDLE)
-    {
-        LOGF("Resize: Destroying vkPipelineLayout");
-        vkDestroyPipelineLayout(vkDevice, vkPipelineLayout, NULL);
-        vkPipelineLayout = VK_NULL_HANDLE;
-        LOGF("Resize: vkPipelineLayout destroyed");
-    }
-
     if (vkDescriptorSetLayout != VK_NULL_HANDLE)
     {
         LOGF("Resize: Destroying vkDescriptorSetLayout");

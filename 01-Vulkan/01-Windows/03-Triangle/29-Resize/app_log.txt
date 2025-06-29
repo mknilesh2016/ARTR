@@ -466,8 +466,6 @@ Resize: Destroyed frame buffer 1
 Resize: Freed vkFrameBuffer_array
 Resize: Destroying vkPipeline
 Resize: vkPipeline destroyed
-Resize: Destroying vkPipelineLayout
-Resize: vkPipelineLayout destroyed
 Resize: Destroying vkDescriptorSetLayout
 Resize: vkDescriptorSetLayout destroyed
 Resize: Destroying vkRenderPass
@@ -504,10 +502,6 @@ CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
 CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
 CreatePipeline: Created pipeline cache
 CreatePipeline: Creating pipeline
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-None-07826 ] | MessageID = 0xd3855fbc | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout, but defines a complete set of state.
-The Vulkan spec states: If the pipeline includes a complete set of state, and there are no libraries included in VkPipelineLibraryCreateInfoKHR::pLibraries, then VkPipelineLayout must be a valid pipeline layout (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-None-07826)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-layout-06602 ] | MessageID = 0xbfe00809 | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout.
-The Vulkan spec states: If the pipeline requires fragment shader state or pre-rasterization shader state, layout must be a valid VkPipelineLayout handle (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-layout-06602)
 CreatePipeline: Destroying pipeline cache
 CreateFramebuffers: Creating frame buffer 0
 CreateFramebuffers: Created frame buffer 0
@@ -565,193 +559,6 @@ CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
 CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
 CreatePipeline: Created pipeline cache
 CreatePipeline: Creating pipeline
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-None-07826 ] | MessageID = 0xd3855fbc | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout, but defines a complete set of state.
-The Vulkan spec states: If the pipeline includes a complete set of state, and there are no libraries included in VkPipelineLibraryCreateInfoKHR::pLibraries, then VkPipelineLayout must be a valid pipeline layout (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-None-07826)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-layout-06602 ] | MessageID = 0xbfe00809 | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout.
-The Vulkan spec states: If the pipeline requires fragment shader state or pre-rasterization shader state, layout must be a valid VkPipelineLayout handle (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-layout-06602)
-CreatePipeline: Destroying pipeline cache
-CreateFramebuffers: Creating frame buffer 0
-CreateFramebuffers: Created frame buffer 0
-CreateFramebuffers: Creating frame buffer 1
-CreateFramebuffers: Created frame buffer 1
-BuildCommandBuffers: Resetted 0th command buffer.
-BuildCommandBuffers: Begin 0th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
-BuildCommandBuffers: Resetted 1th command buffer.
-BuildCommandBuffers: Begin 1th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
-Resize: vkDeviceWaitIdle returned 0
-Resize: Destroying frame buffer 0
-Resize: Destroyed frame buffer 0
-Resize: Destroying frame buffer 1
-Resize: Destroyed frame buffer 1
-Resize: Freed vkFrameBuffer_array
-Resize: Destroying vkPipeline
-Resize: vkPipeline destroyed
-Resize: Destroying vkRenderPass
-Resize: vkRenderPass destroyed
-Resize: Freeing command buffer 0
-Resize: Freeing command buffer 1
-Resize: Freeing vkCommandBuffer_array
-Resize: vkCommandBuffer_array freed
-Resize: Destroyed swapchain image view 0
-Resize: Destroyed swapchain image view 1
-Resize: freed swapchainImageView_array
-Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
-Resize: freed swapchainImage_array
-Resize: destroying swapchain
-Resize: swapchain destroyed
-GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
-CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
-CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
-CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
-CreateSwapchain: Swapchain image width X height = 800 X 600
-GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
-GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
-GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
-GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
-CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
-CreateSwapchain: vkCreateSwapchainKHR() succeded.
-CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
-CreatePipeline: Created pipeline cache
-CreatePipeline: Creating pipeline
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-None-07826 ] | MessageID = 0xd3855fbc | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout, but defines a complete set of state.
-The Vulkan spec states: If the pipeline includes a complete set of state, and there are no libraries included in VkPipelineLibraryCreateInfoKHR::pLibraries, then VkPipelineLayout must be a valid pipeline layout (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-None-07826)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-layout-06602 ] | MessageID = 0xbfe00809 | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout.
-The Vulkan spec states: If the pipeline requires fragment shader state or pre-rasterization shader state, layout must be a valid VkPipelineLayout handle (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-layout-06602)
-CreatePipeline: Destroying pipeline cache
-CreateFramebuffers: Creating frame buffer 0
-CreateFramebuffers: Created frame buffer 0
-CreateFramebuffers: Creating frame buffer 1
-CreateFramebuffers: Created frame buffer 1
-BuildCommandBuffers: Resetted 0th command buffer.
-BuildCommandBuffers: Begin 0th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
-BuildCommandBuffers: Resetted 1th command buffer.
-BuildCommandBuffers: Begin 1th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
-Resize: vkDeviceWaitIdle returned 0
-Resize: Destroying frame buffer 0
-Resize: Destroyed frame buffer 0
-Resize: Destroying frame buffer 1
-Resize: Destroyed frame buffer 1
-Resize: Freed vkFrameBuffer_array
-Resize: Destroying vkPipeline
-Resize: vkPipeline destroyed
-Resize: Destroying vkRenderPass
-Resize: vkRenderPass destroyed
-Resize: Freeing command buffer 0
-Resize: Freeing command buffer 1
-Resize: Freeing vkCommandBuffer_array
-Resize: vkCommandBuffer_array freed
-Resize: Destroyed swapchain image view 0
-Resize: Destroyed swapchain image view 1
-Resize: freed swapchainImageView_array
-Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
-Resize: freed swapchainImage_array
-Resize: destroying swapchain
-Resize: swapchain destroyed
-GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
-CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
-CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
-CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
-CreateSwapchain: Swapchain image width X height = 2560 X 1440
-GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
-GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
-GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
-GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
-CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
-CreateSwapchain: vkCreateSwapchainKHR() succeded.
-CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
-CreatePipeline: Created pipeline cache
-CreatePipeline: Creating pipeline
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-None-07826 ] | MessageID = 0xd3855fbc | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout, but defines a complete set of state.
-The Vulkan spec states: If the pipeline includes a complete set of state, and there are no libraries included in VkPipelineLibraryCreateInfoKHR::pLibraries, then VkPipelineLayout must be a valid pipeline layout (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-None-07826)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-layout-06602 ] | MessageID = 0xbfe00809 | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout.
-The Vulkan spec states: If the pipeline requires fragment shader state or pre-rasterization shader state, layout must be a valid VkPipelineLayout handle (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-layout-06602)
-CreatePipeline: Destroying pipeline cache
-CreateFramebuffers: Creating frame buffer 0
-CreateFramebuffers: Created frame buffer 0
-CreateFramebuffers: Creating frame buffer 1
-CreateFramebuffers: Created frame buffer 1
-BuildCommandBuffers: Resetted 0th command buffer.
-BuildCommandBuffers: Begin 0th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
-BuildCommandBuffers: Resetted 1th command buffer.
-BuildCommandBuffers: Begin 1th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
-Resize: vkDeviceWaitIdle returned 0
-Resize: Destroying frame buffer 0
-Resize: Destroyed frame buffer 0
-Resize: Destroying frame buffer 1
-Resize: Destroyed frame buffer 1
-Resize: Freed vkFrameBuffer_array
-Resize: Destroying vkPipeline
-Resize: vkPipeline destroyed
-Resize: Destroying vkRenderPass
-Resize: vkRenderPass destroyed
-Resize: Freeing command buffer 0
-Resize: Freeing command buffer 1
-Resize: Freeing vkCommandBuffer_array
-Resize: vkCommandBuffer_array freed
-Resize: Destroyed swapchain image view 0
-Resize: Destroyed swapchain image view 1
-Resize: freed swapchainImageView_array
-Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
-Resize: freed swapchainImage_array
-Resize: destroying swapchain
-Resize: swapchain destroyed
-GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
-CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
-CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
-CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
-CreateSwapchain: Swapchain image width X height = 784 X 561
-GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
-GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
-GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
-GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
-CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
-CreateSwapchain: vkCreateSwapchainKHR() succeded.
-CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
-CreatePipeline: Created pipeline cache
-CreatePipeline: Creating pipeline
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-None-07826 ] | MessageID = 0xd3855fbc | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout, but defines a complete set of state.
-The Vulkan spec states: If the pipeline includes a complete set of state, and there are no libraries included in VkPipelineLibraryCreateInfoKHR::pLibraries, then VkPipelineLayout must be a valid pipeline layout (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-None-07826)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-VkGraphicsPipelineCreateInfo-layout-06602 ] | MessageID = 0xbfe00809 | vkCreateGraphicsPipelines(): pCreateInfos[0].layout is not a valid VkPipelineLayout.
-The Vulkan spec states: If the pipeline requires fragment shader state or pre-rasterization shader state, layout must be a valid VkPipelineLayout handle (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-VkGraphicsPipelineCreateInfo-layout-06602)
 CreatePipeline: Destroying pipeline cache
 CreateFramebuffers: Creating frame buffer 0
 CreateFramebuffers: Created frame buffer 0
@@ -784,6 +591,8 @@ Uninitialize: Destroyed frame buffer 1
 Uninitialize: Freed vkFrameBuffer_array
 Uninitialize: Destroying vkPipeline
 Uninitialize: vkPipeline destroyed
+Uninitialize: Destroying vkPipelineLayout
+Uninitialize: vkPipelineLayout destroyed
 Uninitialize: Destroying vkRenderPass
 Uninitialize: vkRenderPass destroyed
 Uninitialize: Destroying vkShaderModule_fragment_shader
