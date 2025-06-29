@@ -891,6 +891,8 @@ VkResult Resize(int width, int height)
         return (vkResult);
     }
 
+    LOGF("Resize: Recreated swapchain based on current size");
+
     bInitialized = TRUE;
     return vkResult;
 }
