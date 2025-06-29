@@ -466,8 +466,6 @@ Resize: Destroyed frame buffer 1
 Resize: Freed vkFrameBuffer_array
 Resize: Destroying vkPipeline
 Resize: vkPipeline destroyed
-Resize: Destroying vkDescriptorSetLayout
-Resize: vkDescriptorSetLayout destroyed
 Resize: Destroying vkRenderPass
 Resize: vkRenderPass destroyed
 Resize: Freeing command buffer 0
@@ -574,6 +572,2058 @@ BuildCommandBuffers: Begin 1th command buffer.
 BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
 BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
 BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 784 X 562
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 785 X 563
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 787 X 565
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 791 X 568
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 793 X 570
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 800 X 575
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 803 X 578
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 807 X 580
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 812 X 584
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 815 X 586
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 816 X 587
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 819 X 590
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 821 X 591
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 823 X 593
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 826 X 595
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 827 X 595
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 831 X 598
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 836 X 602
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 842 X 607
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 852 X 613
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 862 X 619
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 872 X 626
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 885 X 635
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 893 X 642
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 896 X 644
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 899 X 646
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 900 X 647
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 901 X 648
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 902 X 650
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 903 X 651
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 903 X 652
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 904 X 653
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 905 X 653
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 905 X 655
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 906 X 655
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
+Resize: vkDeviceWaitIdle returned 0
+Resize: Destroying frame buffer 0
+Resize: Destroyed frame buffer 0
+Resize: Destroying frame buffer 1
+Resize: Destroyed frame buffer 1
+Resize: Freed vkFrameBuffer_array
+Resize: Destroying vkPipeline
+Resize: vkPipeline destroyed
+Resize: Destroying vkRenderPass
+Resize: vkRenderPass destroyed
+Resize: Freeing command buffer 0
+Resize: Freeing command buffer 1
+Resize: Freeing vkCommandBuffer_array
+Resize: vkCommandBuffer_array freed
+Resize: Destroyed swapchain image view 0
+Resize: Destroyed swapchain image view 1
+Resize: freed swapchainImageView_array
+Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
+Resize: freed swapchainImage_array
+Resize: destroying swapchain
+Resize: swapchain destroyed
+GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
+GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
+CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
+CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
+CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
+CreateSwapchain: Swapchain image width X height = 906 X 656
+GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
+GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
+GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
+GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
+CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
+CreateSwapchain: vkCreateSwapchainKHR() succeded.
+CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
+CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
+CreatePipeline: Created pipeline cache
+CreatePipeline: Creating pipeline
+CreatePipeline: Destroying pipeline cache
+CreateFramebuffers: Creating frame buffer 0
+CreateFramebuffers: Created frame buffer 0
+CreateFramebuffers: Creating frame buffer 1
+CreateFramebuffers: Created frame buffer 1
+BuildCommandBuffers: Resetted 0th command buffer.
+BuildCommandBuffers: Begin 0th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
+BuildCommandBuffers: Resetted 1th command buffer.
+BuildCommandBuffers: Begin 1th command buffer.
+BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
+BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
+BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
 Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0
 Uninitialize: Destroying fence 0
@@ -593,6 +2643,8 @@ Uninitialize: Destroying vkPipeline
 Uninitialize: vkPipeline destroyed
 Uninitialize: Destroying vkPipelineLayout
 Uninitialize: vkPipelineLayout destroyed
+Uninitialize: Destroying vkDescriptorSetLayout
+Uninitialize: vkDescriptorSetLayout destroyed
 Uninitialize: Destroying vkRenderPass
 Uninitialize: vkRenderPass destroyed
 Uninitialize: Destroying vkShaderModule_fragment_shader
