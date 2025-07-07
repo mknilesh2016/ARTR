@@ -4398,7 +4398,9 @@ VkResult BuildCommandBuffers(void)
         vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position.vkBuffer, vkDeviceSize_offset_array);
 
         // Bind with the index buffer
-        vkCmdBindIndexBuffer(vkCommandBuffer_array[0], vertexData_position_index.vkBuffer, 0, VK_INDEX_TYPE_UINT32);
+        // 4th parameter currespond to 3rd parameter of glDrawElemements()
+        // 2nd parameter currespond to 4th parameter of glDrawElements()
+        vkCmdBindIndexBuffer(vkCommandBuffer_array[i], vertexData_position_index.vkBuffer, 0, VK_INDEX_TYPE_UINT32);
 
         // Bind Descriptor sets for uniform buffer to pipeline
         vkCmdBindDescriptorSets(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
@@ -4406,6 +4408,7 @@ VkResult BuildCommandBuffers(void)
 
         // Here, we should call vulkan drawing functions
         uint32_t numIndices = _ARRAYSIZE(triangle_position_indices);
+        // 2nd parameter curresponds to 2nd parameter of glDrawElements
         vkCmdDrawIndexed(vkCommandBuffer_array[i], numIndices, 1, 0, 0, 0);
 
         // End render pass

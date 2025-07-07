@@ -471,10 +471,6 @@ BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
 BuildCommandBuffers: Resetted 1th command buffer.
 BuildCommandBuffers: Begin 1th command buffer.
 BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-vkCmdBindIndexBuffer-commandBuffer-recording ] Object 0: handle = 0x1abc9145070, type = VK_OBJECT_TYPE_COMMAND_BUFFER; | MessageID = 0x50cacc9f | vkCmdBindIndexBuffer(): was called before vkBeginCommandBuffer().
-The Vulkan spec states: commandBuffer must be in the recording state (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-vkCmdBindIndexBuffer-commandBuffer-recording)
-NILESH_VALIDATION: debugReportCallback(): Validation (0) = Validation Error: [ VUID-vkCmdDrawIndexed-None-07312 ] Object 0: handle = 0x1abcb3b2df0, type = VK_OBJECT_TYPE_COMMAND_BUFFER; Object 1: handle = 0x84c0580000000017, type = VK_OBJECT_TYPE_PIPELINE; | MessageID = 0x2de6fa9d | vkCmdDrawIndexed(): Index buffer object has not been bound to this command buffer.
-The Vulkan spec states: If the maintenance6 feature is not enabled, a valid index buffer must be bound (https://vulkan.lunarg.com/doc/view/1.4.304.0/windows/1.4-extensions/vkspec.html#VUID-vkCmdDrawIndexed-None-07312)
 BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
 BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
 Initialize: BuildCommandBuffers() succeded.
