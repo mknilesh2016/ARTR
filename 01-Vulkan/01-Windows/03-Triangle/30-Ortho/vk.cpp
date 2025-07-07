@@ -25,7 +25,9 @@
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_0_TO_1
 
+#include <algorithm>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 // Vulkan related libraries
 #pragma comment(lib,"vulkan-1.lib")
@@ -94,13 +96,31 @@ VkCommandPool vkCommandPool = VK_NULL_HANDLE;
 // Command buffers
 VkCommandBuffer* vkCommandBuffer_array = NULL;
 // Vertex buffer related variables
-typedef struct
+struct VertexData
 {
     VkBuffer vkBuffer;
     VkDeviceMemory vkDeviceMemory;
-} VertexData;
+};
 // Position
 VertexData vertexData_position;
+// Uniform related deeclarations
+struct MyUniformData
+{
+    glm::mat4 modelMatrix;
+    glm::mat4 viewMatrix;
+    glm::mat4 projectionMatrix;
+};
+struct UniformData
+{
+    VkBuffer vkBuffer;
+    VkDeviceMemory vkDeviceMemory;
+    VkDeviceSize allocationSize;
+};
+UniformData uniformData;
+// Descriptor pool
+VkDescriptorPool vkDescriptorPool = VK_NULL_HANDLE;
+VkDescriptorSet vkDescriptorSet = VK_NULL_HANDLE;
+
 // Render Pass
 VkRenderPass vkRenderPass = VK_NULL_HANDLE;
 // Framebuffers
@@ -420,9 +440,12 @@ VkResult Initialize(void)
     VkResult CreateCommandPool(void);
     VkResult CreateCommandBuffers(void);
     VkResult CreateVertexBuffer(void);
+    VkResult CreateUniformBuffer(void);
     VkResult CreateShaders(void);
     VkResult CreateDescriptorSetLayout(void);
     VkResult CreatePipelineLayout(void);
+    VkResult CreateDescriptorPool(void);
+    VkResult CreateDescriptorSet(void);
     VkResult CreateRenderPass(void);
     VkResult CreatePipeline(void);
     VkResult CreateFramebuffers(void);
@@ -584,7 +607,19 @@ VkResult Initialize(void)
         LOGF("Initialize: CreateVertexBuffer() succeded.");
     }
 
-    // Create Render Pass
+    // Create uniform buffer
+    vkResult = CreateUniformBuffer();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateUniformBuffer() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateUniformBuffer() succeded.");
+    }
+
+    // Create shaders
     vkResult = CreateShaders();
     if (vkResult != VK_SUCCESS)
     {
@@ -618,6 +653,30 @@ VkResult Initialize(void)
     else
     {
         LOGF("Initialize: CreatePipelineLayout() succeded.");
+    }
+
+    // Create Descriptor pool
+    vkResult = CreateDescriptorPool();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateDescriptorPool() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateDescriptorPool() succeded.");
+    }
+
+    // Create Descriptor set
+    vkResult = CreateDescriptorSet();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Initialize: CreateDescriptorSet() failed with %i.", vkResult);
+        return (vkResult);
+    }
+    else
+    {
+        LOGF("Initialize: CreateDescriptorSet() succeded.");
     }
 
     // Create Render Pass
@@ -917,6 +976,7 @@ VkResult Display(void)
 {
     // Function declarations
     VkResult Resize(int, int);
+    VkResult UpdateUniformBuffer(void);
 
     // Variable declarations
     VkResult vkResult = VK_SUCCESS;
@@ -932,6 +992,13 @@ VkResult Display(void)
 
     // Wait for device to idle
     vkDeviceWaitIdle(vkDevice);
+
+    vkResult = UpdateUniformBuffer();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("Display: UpdateUniformBuffer() failed with %i.", vkResult);
+        return (vkResult);
+    }
 
     // Acquire index of next swapchain image
     vkResult = vkAcquireNextImageKHR(
@@ -1133,6 +1200,18 @@ void Uninitialize(void)
             LOGF("Uninitialize: vkDescriptorSetLayout destroyed");
         }
 
+        if (vkDescriptorPool != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Destroying vkDescriptorPool");
+            vkDestroyDescriptorPool(vkDevice, vkDescriptorPool, NULL);
+            vkDescriptorPool = VK_NULL_HANDLE;
+
+            // When Descriptor pool is destroyed, descriptor set created by that pool gets destroyed automatically.
+            vkDescriptorSet = VK_NULL_HANDLE;
+
+            LOGF("Uninitialize: vkDescriptorPool and vkDescriptorSet destroyed");
+        }
+
         if (vkRenderPass != VK_NULL_HANDLE)
         {
             LOGF("Uninitialize: Destroying vkRenderPass");
@@ -1157,19 +1236,34 @@ void Uninitialize(void)
             LOGF("Uninitialize: Destroyed vkShaderModule_vertex_shader");
         }
 
-        if (vertexData_position.vkDeviceMemory != VK_NULL_HANDLE)
+        if (uniformData.vkBuffer != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing device memory");
-            vkFreeMemory(vkDevice, vertexData_position.vkDeviceMemory, NULL);
-            LOGF("Uninitialize: Freed device memory");
-            vertexData_position.vkDeviceMemory = VK_NULL_HANDLE;
+            LOGF("Uninitialize: Freeing vkBuffer for uniformdata");
+            vkDestroyBuffer(vkDevice, uniformData.vkBuffer, NULL);
+            LOGF("Uninitialize: Freed vkBuffer for uniform data");
+            uniformData.vkBuffer = VK_NULL_HANDLE;
         }
+        if (uniformData.vkDeviceMemory != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing device memory for uniform data");
+            vkFreeMemory(vkDevice, uniformData.vkDeviceMemory, NULL);
+            LOGF("Uninitialze: Freed device memory for uniform data");
+            uniformData.vkDeviceMemory = VK_NULL_HANDLE;
+        }
+
         if (vertexData_position.vkBuffer != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing vkBuffer");
+            LOGF("Uninitialize: Freeing vkBuffer for vertexData_position");
             vkDestroyBuffer(vkDevice, vertexData_position.vkBuffer, NULL);
-            LOGF("Uninitialize: Freed vkBuffer");
+            LOGF("Uninitialize: Freed vkBuffer for vertexData_position");
             vertexData_position.vkBuffer = VK_NULL_HANDLE;
+        }
+        if (vertexData_position.vkDeviceMemory != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing device memory for vertexData_position");
+            vkFreeMemory(vkDevice, vertexData_position.vkDeviceMemory, NULL);
+            LOGF("Uninitialize: Freed device memory for vertexData_position");
+            vertexData_position.vkDeviceMemory = VK_NULL_HANDLE;
         }
 
         if (vkCommandBuffer_array != NULL)
@@ -2894,10 +2988,10 @@ VkResult CreateSwapchain(VkBool32 vSync)
         vkExtent2D.width = (uint32_t)winWidth;
         vkExtent2D.height = (uint32_t)winHeight;
 
-        vkExtent2D_swapchain.width = max(vkSurfaceCapabilitiesKHR.minImageExtent.width,
-                                         min(vkSurfaceCapabilitiesKHR.maxImageExtent.width, vkExtent2D.width));
-        vkExtent2D_swapchain.height = max(vkSurfaceCapabilitiesKHR.minImageExtent.height,
-                                          min(vkSurfaceCapabilitiesKHR.maxImageExtent.height, vkExtent2D.height));
+        vkExtent2D_swapchain.width = std::max(vkSurfaceCapabilitiesKHR.minImageExtent.width,
+                                         std::min(vkSurfaceCapabilitiesKHR.maxImageExtent.width, vkExtent2D.width));
+        vkExtent2D_swapchain.height = std::max(vkSurfaceCapabilitiesKHR.minImageExtent.height,
+                                          std::min(vkSurfaceCapabilitiesKHR.maxImageExtent.height, vkExtent2D.height));
     }
     LOGF("CreateSwapchain: Swapchain image width X height = %d X %d", vkExtent2D_swapchain.width, vkExtent2D_swapchain.height);
 
@@ -3138,9 +3232,9 @@ VkResult CreateVertexBuffer(void)
     // Code
     float triangle_position[] =
     {
-        0.0f, 1.0f, 0.0f,       // Apex
-        -1.0f, -1.0f, 0.0f,     // Left Bottom
-        1.0f, -1.0f, 0.0f       // Right Bottom    
+        0.0f, 50.0f, 0.0f,       // Apex
+        -50.0f, -50.0f, 0.0f,    // Left Bottom
+        50.0f, -50.0f, 0.0f      // Right Bottom    
     };
 
     // Reset global variable
@@ -3254,6 +3348,172 @@ VkResult CreateVertexBuffer(void)
     LOGF("CreateVertexBuffer: unmapping vertex device memory");
     vkUnmapMemory(vkDevice, vertexData_position.vkDeviceMemory);
     LOGF("CreateVertexBuffer: unmapped vertex device memory");
+
+    return vkResult;
+}
+
+VkResult CreateUniformBuffer(void)
+{
+    // Function declarations
+    VkResult UpdateUniformBuffer(void);
+
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    // Code
+    memset(&uniformData, 0, sizeof(UniformData));
+
+    VkBufferCreateInfo vkBufferCreateInfo;
+    memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
+    vkBufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+    vkBufferCreateInfo.pNext = NULL;
+    vkBufferCreateInfo.flags = 0; // Valid flags are used in scattered/sparse buffer
+    vkBufferCreateInfo.size = sizeof(MyUniformData);
+    vkBufferCreateInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+
+    // While we specify memory in bytes, vulkan allocates memory in regions based on device memory properties requirements
+    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &uniformData.vkBuffer);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkCreateBuffer failed with %d", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkCreateBuffer succeded");
+    }
+
+    // Get device memory requirements for the above buffer
+    VkMemoryRequirements vkMemoryRequirements;
+    memset(&vkMemoryRequirements, 0, sizeof(vkMemoryRequirements));
+    vkGetBufferMemoryRequirements(vkDevice, uniformData.vkBuffer, &vkMemoryRequirements);
+
+    // Now actually allocate the memory for the vertex data
+    VkMemoryAllocateInfo vkMemoryAllocateInfo;
+    memset(&vkMemoryAllocateInfo, 0, sizeof(VkMemoryAllocateInfo));
+    vkMemoryAllocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    vkMemoryAllocateInfo.pNext = NULL;
+    vkMemoryAllocateInfo.allocationSize = vkMemoryRequirements.size;
+    // Find memory type required for this buffer
+    BOOL foundMemoryTypeIndex = FALSE;
+    for (uint32_t i = 0; i < vkPhysicalDeviceMemoryProperties.memoryTypeCount; ++i)
+    {
+        if ((vkMemoryRequirements.memoryTypeBits & 1) == 1)
+        {
+            if (vkPhysicalDeviceMemoryProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)
+            {
+                vkMemoryAllocateInfo.memoryTypeIndex = i;
+                foundMemoryTypeIndex = TRUE;
+                break;
+            }
+        }
+        else
+        {
+            // Right shift
+            vkMemoryRequirements.memoryTypeBits >>= 1;
+        }
+    }
+    if (foundMemoryTypeIndex == FALSE)
+    {
+        LOGF("CreateUniformBuffer: unable to locate required memory type");
+        return VK_ERROR_INITIALIZATION_FAILED;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: Found equired memory type at index %d", vkMemoryAllocateInfo.memoryTypeIndex);
+    }
+
+    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &uniformData.vkDeviceMemory);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkAllocateMemory failed with %d", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkAllocateMemory succeded");
+    }
+
+    // Store allocation size for this data
+    uniformData.allocationSize = vkMemoryAllocateInfo.allocationSize;
+
+    // Bind Buffer
+    vkResult = vkBindBufferMemory(vkDevice, uniformData.vkBuffer, uniformData.vkDeviceMemory, 0);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkBindBufferMemory failed with %d", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkBindBufferMemory succeded");
+    }
+
+    // Update uniform buffer
+    vkResult = UpdateUniformBuffer();
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: UpdateUniformBuffer failed with %d", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: UpdateUniformBuffer succeded");
+    }
+
+    return vkResult;
+}
+
+VkResult UpdateUniformBuffer(void)
+{
+    // Variables
+    VkResult vkResult = VK_SUCCESS;
+
+    // Code
+    MyUniformData myUniformData;
+    memset(&myUniformData, 0, sizeof(MyUniformData));
+
+    // Update matrices
+    myUniformData.modelMatrix = glm::mat4(1.0f);
+    myUniformData.viewMatrix = glm::mat4(1.0f);
+
+    glm::mat4 orthoGraphicProjectionMatrix = glm::mat4(1.0f);
+    if (winWidth <= winHeight)
+    {
+        orthoGraphicProjectionMatrix = glm::ortho(
+            -100.0f,
+            100.0f,
+            -100.0f * (float) winHeight / (float) winHeight,
+            100.0f * (float) winHeight / (float) winWidth,
+            -100.0f,
+            100.0f);
+    }
+    else
+    {
+        orthoGraphicProjectionMatrix = glm::ortho(
+            -100.0f * (float)winWidth / (float)winHeight,
+            100.0f * (float)winWidth / (float)winHeight,
+            -100.0f,
+            100.0f,
+            -100.0f,
+            100.0f);
+    }
+    myUniformData.projectionMatrix = orthoGraphicProjectionMatrix;
+
+    // Map uniform buffer
+    void *data = NULL;
+    vkResult = vkMapMemory(vkDevice, uniformData.vkDeviceMemory, 0, uniformData.allocationSize, 0, &data);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("UpdateUniformBuffer: vkMapMemory failed with %d", vkResult);
+        return vkResult;
+    }
+
+    // Copy uniform data to the mapped allocation
+    memcpy(data, &myUniformData, sizeof(MyUniformData));
+
+    // Unmap memory
+    vkUnmapMemory(vkDevice, uniformData.vkDeviceMemory);
 
     return vkResult;
 }
@@ -3413,13 +3673,23 @@ VkResult CreateDescriptorSetLayout(void)
     VkResult vkResult = VK_SUCCESS;
 
     // Code
+
+    // Create binding for uniforms that are used in shaders
+    VkDescriptorSetLayoutBinding vkDescriptorSetLayoutBinding;
+    memset(&vkDescriptorSetLayoutBinding, 0, sizeof(VkDescriptorSetLayoutBinding));
+    vkDescriptorSetLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    vkDescriptorSetLayoutBinding.binding = 0; // layout(binding = 0) uniform mvpMatrix in vertex shader
+    vkDescriptorSetLayoutBinding.descriptorCount = 1;
+    vkDescriptorSetLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+    vkDescriptorSetLayoutBinding.pImmutableSamplers = NULL;
+
     VkDescriptorSetLayoutCreateInfo vkDescriptorSetLayoutCreateInfo;
     memset(&vkDescriptorSetLayoutCreateInfo, 0, sizeof(VkDescriptorSetLayoutCreateInfo));
     vkDescriptorSetLayoutCreateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
     vkDescriptorSetLayoutCreateInfo.pNext = NULL;
     vkDescriptorSetLayoutCreateInfo.flags = 0;
-    vkDescriptorSetLayoutCreateInfo.bindingCount = 0;
-    vkDescriptorSetLayoutCreateInfo.pBindings = NULL;
+    vkDescriptorSetLayoutCreateInfo.bindingCount = 1;
+    vkDescriptorSetLayoutCreateInfo.pBindings = &vkDescriptorSetLayoutBinding;
 
     vkResult = vkCreateDescriptorSetLayout(vkDevice, &vkDescriptorSetLayoutCreateInfo, NULL, &vkDescriptorSetLayout);
     if (vkResult != VK_SUCCESS)
@@ -3453,6 +3723,86 @@ VkResult CreatePipelineLayout(void)
         LOGF("CreatePipelineLayout: vkCreatePipelineLayout failed with %d", vkResult);
         return vkResult;
     }
+
+    return vkResult;
+}
+
+VkResult CreateDescriptorPool(void)
+{
+    VkResult vkResult = VK_SUCCESS;
+
+    // Before creating actual descriptor pool, vulkan expects DescriptPoolSize
+    VkDescriptorPoolSize vkDescriptorPoolSize;
+    memset(&vkDescriptorPoolSize, 0, sizeof(VkDescriptorPoolSize));
+    vkDescriptorPoolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    vkDescriptorPoolSize.descriptorCount = 1;
+
+    VkDescriptorPoolCreateInfo vkDescriptorPoolCreateInfo;
+    memset(&vkDescriptorPoolCreateInfo, 0, sizeof(VkDescriptorPoolCreateInfo));
+    vkDescriptorPoolCreateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
+    vkDescriptorPoolCreateInfo.pNext = NULL;
+    vkDescriptorPoolCreateInfo.flags = 0;
+    vkDescriptorPoolCreateInfo.poolSizeCount = 1;
+    vkDescriptorPoolCreateInfo.pPoolSizes = &vkDescriptorPoolSize;
+    vkDescriptorPoolCreateInfo.maxSets = 1;
+
+    vkResult = vkCreateDescriptorPool(vkDevice, &vkDescriptorPoolCreateInfo, NULL, &vkDescriptorPool);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateDescriptorPool: vkCreateDescriptorPool failed with %d", vkResult);
+        return vkResult;
+    }
+
+    return vkResult;
+}
+
+VkResult CreateDescriptorSet(void)
+{
+    VkResult vkResult = VK_SUCCESS;
+
+    VkDescriptorSetAllocateInfo vkDescriptorSetAllocateInfo;
+    memset(&vkDescriptorSetAllocateInfo, 0, sizeof(VkDescriptorSetAllocateInfo));
+    vkDescriptorSetAllocateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
+    vkDescriptorSetAllocateInfo.pNext = NULL;
+    vkDescriptorSetAllocateInfo.descriptorPool = vkDescriptorPool;
+    vkDescriptorSetAllocateInfo.descriptorSetCount = 1;
+    vkDescriptorSetAllocateInfo.pSetLayouts = &vkDescriptorSetLayout;
+
+    vkResult = vkAllocateDescriptorSets(vkDevice, &vkDescriptorSetAllocateInfo, &vkDescriptorSet);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateDescriptorSet: vkAllocateDescriptorSets failed with %d", vkResult);
+        return vkResult;
+    }
+
+    // Describe whether we want buffer as uniform or image as uniform
+    VkDescriptorBufferInfo vkDescriptorBufferInfo;
+    memset(&vkDescriptorBufferInfo, 0, sizeof(VkDescriptorBufferInfo));
+    vkDescriptorBufferInfo.buffer = uniformData.vkBuffer;
+    vkDescriptorBufferInfo.offset = 0;
+    vkDescriptorBufferInfo.range = uniformData.allocationSize;
+
+    // Now update above descriptor set directly to the shader
+    // There are two ways to update -
+    // 1. Writing directly to the shader
+    // 2. Copying from one shader to another shader
+    //
+    // We will prefer writing directly to the shader. This requires initialization of following structure
+    VkWriteDescriptorSet vkWriteDescriptorSet;
+    memset(&vkWriteDescriptorSet, 0, sizeof(VkWriteDescriptorSet));
+    vkWriteDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    vkWriteDescriptorSet.dstSet = vkDescriptorSet;
+    vkWriteDescriptorSet.dstBinding = 0; // Due to layout(binding = 0) uniform mvpMatrix in vertex shader
+    vkWriteDescriptorSet.dstArrayElement = 0;
+    vkWriteDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    vkWriteDescriptorSet.descriptorCount = 1;
+    vkWriteDescriptorSet.pBufferInfo = &vkDescriptorBufferInfo;
+    vkWriteDescriptorSet.pImageInfo = NULL;
+    vkWriteDescriptorSet.pTexelBufferView = NULL;
+
+    vkUpdateDescriptorSets(vkDevice, 1, &vkWriteDescriptorSet, 0, nullptr);
+
+    LOGF("CreateDescriptorSet: vkUpdateDescriptorSets completed");
 
     return vkResult;
 }
@@ -3922,6 +4272,10 @@ VkResult BuildCommandBuffers(void)
         VkDeviceSize vkDeviceSize_offset_array[1];
         memset(vkDeviceSize_offset_array, 0, _ARRAYSIZE(vkDeviceSize_offset_array) * sizeof(VkDeviceSize));
         vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position.vkBuffer, vkDeviceSize_offset_array);
+
+        // Bind Descriptor sets for uniform buffer to pipeline
+        vkCmdBindDescriptorSets(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                vkPipelineLayout, 0, 1, &vkDescriptorSet, 0, nullptr);
 
         // Here, we should call vulkan drawing functions
         vkCmdDraw(vkCommandBuffer_array[i], 3, 1, 0, 0);
