@@ -3308,9 +3308,9 @@ VkResult CreateVertexBuffer(void)
     // Code
     float triangle_color[] =
         {
-            0.0f, 0.0f, 1.0f, // Blue
-            0.0f, 0.0f, 1.0f, // Blue
-            0.0f, 0.0f, 1.0f, // Blue
+            1.0f, 0.0f, 0.0f, // RED
+            0.0f, 1.0f, 0.0f, // GREEN
+            0.0f, 0.0f, 1.0f, // BLUE
         };
 
     // Code
