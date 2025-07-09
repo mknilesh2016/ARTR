@@ -3728,7 +3728,7 @@ VkResult UpdateUniformBuffer(void)
         memset(&myUniformData, 0, sizeof(MyUniformData));
         myUniformData.modelMatrix = glm::translate(
             glm::mat4(1.0f),
-            glm::vec3(-1.0f, 0.0f,-6.0f));
+            glm::vec3(-1.5f, 0.0f,-6.0f));
         myUniformData.viewMatrix = glm::mat4(1.0f);
 
         glm::mat4 perspectiveProjectionMatrix = glm::mat4(1.0);
@@ -3766,7 +3766,7 @@ VkResult UpdateUniformBuffer(void)
         memset(&myUniformData, 0, sizeof(MyUniformData));
         myUniformData.modelMatrix = glm::translate(
             glm::mat4(1.0f),
-            glm::vec3(1.0f, 0.0f, -6.0f));
+            glm::vec3(1.5f, 0.0f, -6.0f));
         myUniformData.viewMatrix = glm::mat4(1.0f);
 
         glm::mat4 perspectiveProjectionMatrix = glm::mat4(1.0);
