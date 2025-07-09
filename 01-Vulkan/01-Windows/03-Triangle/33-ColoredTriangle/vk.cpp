@@ -1248,7 +1248,7 @@ void Uninitialize(void)
         {
             LOGF("Uninitialize: Freeing device memory for uniform data");
             vkFreeMemory(vkDevice, uniformData.vkDeviceMemory, NULL);
-            LOGF("Uninitialze: Freed device memory for uniform data");
+            LOGF("Uninitialize: Freed device memory for uniform data");
             uniformData.vkDeviceMemory = VK_NULL_HANDLE;
         }
 

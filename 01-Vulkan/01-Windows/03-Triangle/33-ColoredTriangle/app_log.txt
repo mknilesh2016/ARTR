@@ -534,64 +534,6 @@ BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
 BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
 BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
 Resize: Recreated swapchain based on current size
-Resize: vkDeviceWaitIdle returned 0
-Resize: Destroying frame buffer 0
-Resize: Destroyed frame buffer 0
-Resize: Destroying frame buffer 1
-Resize: Destroyed frame buffer 1
-Resize: Freed vkFrameBuffer_array
-Resize: Destroying vkPipeline
-Resize: vkPipeline destroyed
-Resize: Destroying vkRenderPass
-Resize: vkRenderPass destroyed
-Resize: Freeing command buffer 0
-Resize: Freeing command buffer 1
-Resize: Freeing vkCommandBuffer_array
-Resize: vkCommandBuffer_array freed
-Resize: Destroyed swapchain image view 0
-Resize: Destroyed swapchain image view 1
-Resize: freed swapchainImageView_array
-Resize: No need to destroy VkImage associated with swapchain since the same will be destroyed later inside vkDestroySwapchainKHR()
-Resize: freed swapchainImage_array
-Resize: destroying swapchain
-Resize: swapchain destroyed
-GetPhysicalDeviceSurfaceFormatAndColorSpace: First call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Second call to vkGetPhysicalDeviceSurfaceFormatsKHR() succeded with 5 count
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected surface format VK_FORMAT_B8G8R8A8_UNORM
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Selected color space VK_COLOR_SPACE_SRGB_NONLINEAR_KHR
-GetPhysicalDeviceSurfaceFormatAndColorSpace: Freed vkSurfaceFormatKHR_array
-CreateSwapchain: GetPhysicalDeviceSurfaceFormatAndColorSpace() succeded.
-CreateSwapchain: vkGetPhysicalDeviceSurfaceCapabilitiesKHR() succeded.
-CreateSwapchain: vkSurfaceCapabilitiesKHR.currentExtent.width != UINT32_MAX
-CreateSwapchain: Swapchain image width X height = 784 X 561
-GetPhysicalDevicePresentMode: First call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded with 4 count
-GetPhysicalDevicePresentMode: Second call to vkGetPhysicalDeviceSurfacePresentModesKHR() succeded
-GetPhysicalDevicePresentMode: Selected present mode VK_PRESENT_MODE_MAILBOX_KHR
-GetPhysicalDevicePresentMode: Freed vkPresentModeKHR_array
-CreateSwapchain: GetPhysicalDevicePresentMode() succeded.
-CreateSwapchain: vkCreateSwapchainKHR() succeded.
-CreateImagesAndImageViews: first call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: second call to vkCreateSwapchainKHR() succeded with 2 images
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 0
-CreateImagesAndImageViews: vkCreateImageView succeded for iteration 1
-CreatePipeline: Created pipeline cache
-CreatePipeline: Creating pipeline
-CreatePipeline: Destroying pipeline cache
-CreateFramebuffers: Creating frame buffer 0
-CreateFramebuffers: Created frame buffer 0
-CreateFramebuffers: Creating frame buffer 1
-CreateFramebuffers: Created frame buffer 1
-BuildCommandBuffers: Resetted 0th command buffer.
-BuildCommandBuffers: Begin 0th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 0th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 0th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 0th command buffer.
-BuildCommandBuffers: Resetted 1th command buffer.
-BuildCommandBuffers: Begin 1th command buffer.
-BuildCommandBuffers: vkCmdBeginRenderPass 1th command buffer.
-BuildCommandBuffers: vkCmdEndRenderPass 1th command buffer.
-BuildCommandBuffers: vkEndCommandBuffer 1th command buffer.
-Resize: Recreated swapchain based on current size
 Uninitialize: waiting for all operations on the device to finish
 Uninitialize: vkDeviceWaitIdle returned 0
 Uninitialize: Destroying fence 0
@@ -624,7 +566,7 @@ Uninitialize: Destroyed vkShaderModule_vertex_shader
 Uninitialize: Freeing vkBuffer for uniformdata
 Uninitialize: Freed vkBuffer for uniform data
 Uninitialize: Freeing device memory for uniform data
-Uninitialze: Freed device memory for uniform data
+Uninitialize: Freed device memory for uniform data
 Uninitialize: Freeing vkBuffer for vertexData_position
 Uninitialize: Freed vkBuffer for vertexData_position
 Uninitialize: Freeing device memory for vertexData_position
