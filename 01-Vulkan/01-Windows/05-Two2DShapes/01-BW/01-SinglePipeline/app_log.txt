@@ -58,7 +58,7 @@ CreateVulkanInstance: CreateValidationCallbackFunction() succeded.
 Initialize: CreateVulkanInstance() succeded.
 GetSupportedSurface: vkCreateWin32SurfaceKHR() succeded
 Initialize: GetSupportedSurface() succeded.
-GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded with 1 devices.
+GetPhysicalDevice: First call to vkEnumeratePhysicalDevices() succeded with 2 devices.
 GetPhysicalDevice: Second call to vkEnumeratePhysicalDevices() succeded.
 GetPhysicalDevice: Device 0
 	Queue (0) : Flags => 0x0000000F
@@ -139,6 +139,13 @@ Driver Version: 560.376
 Device Type: Discrete GPU (dGPU)
 VendorId: 0x10de
 DeviceId: 0x2230
+************* Device 1 ***************
+ApiVersion: 1.4.309
+Device Name: Intel(R) Graphics
+Driver Version: 0.405
+Device Type: Integrated GPU (iGPU)
+VendorId: 0x8086
+DeviceId: 0x7d67
 **************************************
 Initialize: PrintVkInfo() succeded.
 FillDeviceExtensionNames: First call to vkEnumerateDeviceExtensionProperties() succeded with 225 device extensions.
