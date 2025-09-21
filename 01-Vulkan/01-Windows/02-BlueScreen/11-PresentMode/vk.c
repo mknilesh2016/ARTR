@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   10-SurfaceFormatAndSurfaceColorSpace based on 09-DeviceQueue
+// Program	:   02-BlueScreen/11-PresentMode
 // 
 // ************************************************************************* //
 

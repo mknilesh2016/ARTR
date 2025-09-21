@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   22-VertexBuffer
+// Program	:   03-Triangle/22a-VertexBuffer
 // 
 // ************************************************************************* //
 

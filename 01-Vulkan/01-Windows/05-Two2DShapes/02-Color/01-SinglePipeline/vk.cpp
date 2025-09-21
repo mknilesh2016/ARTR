@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   Draw two colored 2D shapes
+// Program	:   05-Two2DShapes/02-Color/01-SinglePipeline
 // 
 // ************************************************************************* //
 

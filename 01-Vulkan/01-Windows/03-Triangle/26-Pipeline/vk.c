@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   26-Pipeline
+// Program	:   03-Triangle/26-Pipeline
 // 
 // ************************************************************************* //
 

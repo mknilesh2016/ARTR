@@ -1,0 +1,3 @@
+- We are going to use glslang, spirv library for this. These libraries are in CPP. Since these libraries need to support HLSL and METAL also, these libraries are implemented in CPP.
+- The library headers might change by versions so changing build configuration might require changing include headers changes.
+- 

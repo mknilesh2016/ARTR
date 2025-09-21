@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   09-DeviceQueue based on 08-VulkanDevice
+// Program	:   02-BlueScreen/09-DeviceQueue
 // 
 // ************************************************************************* //
 

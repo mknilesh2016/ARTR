@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   17-Framebuffer
+// Program	:   02-BlueScreen/17-Framebuffers
 // 
 // ************************************************************************* //
 

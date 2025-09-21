@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   23-Shaders
+// Program	:   03-Triangle/23-Shaders
 // 
 // ************************************************************************* //
 

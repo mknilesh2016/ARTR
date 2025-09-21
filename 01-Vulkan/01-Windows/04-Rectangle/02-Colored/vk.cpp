@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   Draw pink colored rectangle
+// Program	:   04-Rectangle/02-Colored
 // 
 // ************************************************************************* //
 

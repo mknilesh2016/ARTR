@@ -2,8 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   SimpleWindow
-//              Based on IntegratedWindow Template by Pooja Waghmare
+// Program	:   01-WindowsStub
 // 
 // ************************************************************************* //
 

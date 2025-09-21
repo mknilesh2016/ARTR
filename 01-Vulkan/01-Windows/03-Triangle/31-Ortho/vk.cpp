@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   29-Resize with minimized support
+// Program	:   03-Triangle/31-Ortho
 // 
 // ************************************************************************* //
 

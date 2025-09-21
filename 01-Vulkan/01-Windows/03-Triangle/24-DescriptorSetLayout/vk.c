@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   24-DescriptorSetLayout
+// Program	:   03-Triangle/24-DescriptorSetLayout
 // 
 // ************************************************************************* //
 
