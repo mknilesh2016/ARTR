@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   06-2DRotation/01-BW/01-Triangle
+// Program	:   06-2DRotation/01-BW/02-Rectangle
 // 
 // ************************************************************************* //
 
@@ -153,7 +153,7 @@ VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
 VkViewport vkViewport;
 VkRect2D vkRect2D_scissor;
 VkPipeline vkPipeline = VK_NULL_HANDLE;
-// For rotation
+// Rotation
 float angle = 0.0f;
 
 // Entry point function
@@ -287,10 +287,7 @@ int wWinMain(
                 }
 
                 // Update the scene
-                if (gbActiveWindow == TRUE)
-                {
-                    Update();
-                }
+                Update();
             }
         }
     }
@@ -3240,12 +3237,18 @@ VkResult CreateVertexBuffer(void)
     VkResult vkResult = VK_SUCCESS;
 
     // Code
-    float triangle_position[] =
-    {
-        0.0f, 1.0f, 0.0f,       // Apex
-        -1.0f, -1.0f, 0.0f,    // Left Bottom
-        1.0f, -1.0f, 0.0f      // Right Bottom    
-    };
+    float rectangle_position[] =
+        {
+            // First Triangle
+            1.0f, 1.0f, 0.0f,   // Right Top
+            -1.0f, 1.0f, 0.0f,  // Left Top
+            -1.0f, -1.0f, 0.0f, // Left Bottom
+
+            // Second Triangle
+            -1.0f, -1.0f, 0.0f, // Left Bottom
+            1.0f, -1.0f, 0.0f,  // Right Bottom
+            1.0f, 1.0f, 0.0f,   // Right Top
+        };
 
     // Reset global variable
     memset(&vertexData_position, 0, sizeof(VertexData));
@@ -3255,7 +3258,7 @@ VkResult CreateVertexBuffer(void)
     vkBufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
     vkBufferCreateInfo.pNext = NULL;
     vkBufferCreateInfo.flags = 0;   // Valid flags are used in scattered/sparse buffer
-    vkBufferCreateInfo.size = sizeof(triangle_position);
+    vkBufferCreateInfo.size = sizeof(rectangle_position);
     vkBufferCreateInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
     // vkBufferCreateInfo.sharingMode => By default exclusive. Not shared. when using concurrent, remaining 3 members would be used.
     // In vulkan memory allocation is not done in bytes, but it is done in regions. The max number of regions 4096.
@@ -3351,7 +3354,7 @@ VkResult CreateVertexBuffer(void)
 
     // Copy vertex data to the mapped allocation
     LOGF("CreateVertexBuffer: writing vertex data to mapped memory");
-    memcpy(data, triangle_position, sizeof(triangle_position));
+    memcpy(data, rectangle_position, sizeof(rectangle_position));
     LOGF("CreateVertexBuffer: wrote vertex data to mapped memory");
 
     // Unmap memory
@@ -3483,16 +3486,17 @@ VkResult UpdateUniformBuffer(void)
     MyUniformData myUniformData;
     memset(&myUniformData, 0, sizeof(MyUniformData));
     myUniformData.modelMatrix = glm::mat4(1.0f);
+    myUniformData.viewMatrix = glm::mat4(1.0f);
 
     // Update matrices
-    glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f,-4.0f));
+    glm::mat4 translationMatrix = glm::translate(
+        glm::mat4(1.0f),
+        glm::vec3(0.0f, 0.0f,-3.0f));
     glm::mat4 rotationMatrix = glm::rotate(
         glm::mat4(1.0f),
         glm::radians(angle),
-        glm::vec3(0.0f, 1.0f, 0.0f));
-
-    myUniformData.modelMatrix = myUniformData.modelMatrix * translationMatrix * rotationMatrix;
-    myUniformData.viewMatrix = glm::mat4(1.0f);
+        glm::vec3(1.0f, 0.0f, 0.0f));
+    myUniformData.modelMatrix = myUniformData.modelMatrix * translationMatrix * rotationMatrix; // X axis rotation of rectangle
 
     glm::mat4 perspectiveProjectionMatrix = glm::mat4(1.0);
     perspectiveProjectionMatrix = glm::perspective<float>(
@@ -4285,7 +4289,7 @@ VkResult BuildCommandBuffers(void)
                                 vkPipelineLayout, 0, 1, &vkDescriptorSet, 0, nullptr);
 
         // Here, we should call vulkan drawing functions
-        vkCmdDraw(vkCommandBuffer_array[i], 3, 1, 0, 0);
+        vkCmdDraw(vkCommandBuffer_array[i], 9, 1, 0, 0);
 
         // End render pass
         LOGF("BuildCommandBuffers: vkCmdEndRenderPass %dth command buffer.", i);

@@ -2,7 +2,7 @@
 //
 // Name		:   Nilesh Mahajan
 // Roll No.	:   ARTR01-109
-// Program	:   06-2DRotation/01-BW/01-Triangle
+// Program	:   06-2DRotation/01-BW/03-TriangleAndRectangle
 // 
 // ************************************************************************* //
 
@@ -102,7 +102,8 @@ struct VertexData
     VkDeviceMemory vkDeviceMemory;
 };
 // Position
-VertexData vertexData_position;
+VertexData vertexData_position_triangle;
+VertexData vertexData_position_rectangle;
 // Uniform related deeclarations
 struct MyUniformData
 {
@@ -116,10 +117,12 @@ struct UniformData
     VkDeviceMemory vkDeviceMemory;
     VkDeviceSize allocationSize;
 };
-UniformData uniformData;
+UniformData uniformData_triangle;
+UniformData uniformData_rectangle;
 // Descriptor pool
 VkDescriptorPool vkDescriptorPool = VK_NULL_HANDLE;
-VkDescriptorSet vkDescriptorSet = VK_NULL_HANDLE;
+VkDescriptorSet vkDescriptorSet_triangle = VK_NULL_HANDLE;
+VkDescriptorSet vkDescriptorSet_rectangle = VK_NULL_HANDLE;
 
 // Render Pass
 VkRenderPass vkRenderPass = VK_NULL_HANDLE;
@@ -153,7 +156,7 @@ VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
 VkViewport vkViewport;
 VkRect2D vkRect2D_scissor;
 VkPipeline vkPipeline = VK_NULL_HANDLE;
-// For rotation
+// Rotation
 float angle = 0.0f;
 
 // Entry point function
@@ -1217,9 +1220,10 @@ void Uninitialize(void)
             vkDescriptorPool = VK_NULL_HANDLE;
 
             // When Descriptor pool is destroyed, descriptor set created by that pool gets destroyed automatically.
-            vkDescriptorSet = VK_NULL_HANDLE;
+            vkDescriptorSet_triangle = VK_NULL_HANDLE;
+            vkDescriptorSet_rectangle = VK_NULL_HANDLE;
 
-            LOGF("Uninitialize: vkDescriptorPool and vkDescriptorSet destroyed");
+            LOGF("Uninitialize: vkDescriptorPool, vkDescriptorSet_triangle and vkDescriptorSet_rectangle destroyed");
         }
 
         if (vkRenderPass != VK_NULL_HANDLE)
@@ -1246,34 +1250,64 @@ void Uninitialize(void)
             LOGF("Uninitialize: Destroyed vkShaderModule_vertex_shader");
         }
 
-        if (uniformData.vkBuffer != VK_NULL_HANDLE)
+        if (uniformData_rectangle.vkBuffer != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing vkBuffer for uniformdata");
-            vkDestroyBuffer(vkDevice, uniformData.vkBuffer, NULL);
-            LOGF("Uninitialize: Freed vkBuffer for uniform data");
-            uniformData.vkBuffer = VK_NULL_HANDLE;
+            LOGF("Uninitialize: Freeing vkBuffer for uniformdata for rectangle");
+            vkDestroyBuffer(vkDevice, uniformData_rectangle.vkBuffer, NULL);
+            LOGF("Uninitialize: Freed vkBuffer for uniform data for rectangle");
+            uniformData_rectangle.vkBuffer = VK_NULL_HANDLE;
         }
-        if (uniformData.vkDeviceMemory != VK_NULL_HANDLE)
+        if (uniformData_rectangle.vkDeviceMemory != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing device memory for uniform data");
-            vkFreeMemory(vkDevice, uniformData.vkDeviceMemory, NULL);
-            LOGF("Uninitialze: Freed device memory for uniform data");
-            uniformData.vkDeviceMemory = VK_NULL_HANDLE;
+            LOGF("Uninitialize: Freeing device memory for uniform data for rectangle");
+            vkFreeMemory(vkDevice, uniformData_rectangle.vkDeviceMemory, NULL);
+            LOGF("Uninitialze: Freed device memory for uniform data for rectangle");
+            uniformData_rectangle.vkDeviceMemory = VK_NULL_HANDLE;
         }
 
-        if (vertexData_position.vkBuffer != VK_NULL_HANDLE)
+        if (uniformData_triangle.vkBuffer != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing vkBuffer for vertexData_position");
-            vkDestroyBuffer(vkDevice, vertexData_position.vkBuffer, NULL);
-            LOGF("Uninitialize: Freed vkBuffer for vertexData_position");
-            vertexData_position.vkBuffer = VK_NULL_HANDLE;
+            LOGF("Uninitialize: Freeing vkBuffer for uniformdata for triangle");
+            vkDestroyBuffer(vkDevice, uniformData_triangle.vkBuffer, NULL);
+            LOGF("Uninitialize: Freed vkBuffer for uniform data for triangle");
+            uniformData_triangle.vkBuffer = VK_NULL_HANDLE;
         }
-        if (vertexData_position.vkDeviceMemory != VK_NULL_HANDLE)
+        if (uniformData_triangle.vkDeviceMemory != VK_NULL_HANDLE)
         {
-            LOGF("Uninitialize: Freeing device memory for vertexData_position");
-            vkFreeMemory(vkDevice, vertexData_position.vkDeviceMemory, NULL);
-            LOGF("Uninitialize: Freed device memory for vertexData_position");
-            vertexData_position.vkDeviceMemory = VK_NULL_HANDLE;
+            LOGF("Uninitialize: Freeing device memory for uniform data for triangle");
+            vkFreeMemory(vkDevice, uniformData_triangle.vkDeviceMemory, NULL);
+            LOGF("Uninitialze: Freed device memory for uniform data for triangle");
+            uniformData_triangle.vkDeviceMemory = VK_NULL_HANDLE;
+        }
+
+        if (vertexData_position_rectangle.vkBuffer != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing vkBuffer for vertexData_position_rectangle");
+            vkDestroyBuffer(vkDevice, vertexData_position_rectangle.vkBuffer, NULL);
+            LOGF("Uninitialize: Freed vkBuffer for vertexData_position_rectangle");
+            vertexData_position_rectangle.vkBuffer = VK_NULL_HANDLE;
+        }
+        if (vertexData_position_rectangle.vkDeviceMemory != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing device memory for vertexData_position_rectangle");
+            vkFreeMemory(vkDevice, vertexData_position_rectangle.vkDeviceMemory, NULL);
+            LOGF("Uninitialize: Freed device memory for vertexData_position_rectangle");
+            vertexData_position_rectangle.vkDeviceMemory = VK_NULL_HANDLE;
+        }
+
+        if (vertexData_position_triangle.vkBuffer != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing vkBuffer for vertexData_position_triangle");
+            vkDestroyBuffer(vkDevice, vertexData_position_triangle.vkBuffer, NULL);
+            LOGF("Uninitialize: Freed vkBuffer for vertexData_position_triangle");
+            vertexData_position_triangle.vkBuffer = VK_NULL_HANDLE;
+        }
+        if (vertexData_position_triangle.vkDeviceMemory != VK_NULL_HANDLE)
+        {
+            LOGF("Uninitialize: Freeing device memory for vertexData_position_triangle");
+            vkFreeMemory(vkDevice, vertexData_position_triangle.vkDeviceMemory, NULL);
+            LOGF("Uninitialize: Freed device memory for vertexData_position_triangle");
+            vertexData_position_triangle.vkDeviceMemory = VK_NULL_HANDLE;
         }
 
         if (vkCommandBuffer_array != NULL)
@@ -3247,8 +3281,24 @@ VkResult CreateVertexBuffer(void)
         1.0f, -1.0f, 0.0f      // Right Bottom    
     };
 
+    // Code
+    float rectangle_position[] =
+    {
+        // First Triangle
+        1.0f, 1.0f, 0.0f,   // Right Top
+        -1.0f, 1.0f, 0.0f,  // Left Top
+        -1.0f, -1.0f, 0.0f, // Left Bottom
+
+        // Second Triangle
+        -1.0f, -1.0f, 0.0f, // Left Bottom
+        1.0f, -1.0f, 0.0f,  // Right Bottom
+        1.0f, 1.0f, 0.0f,   // Right Top
+    };
+
+    // Triangle --------------------
+
     // Reset global variable
-    memset(&vertexData_position, 0, sizeof(VertexData));
+    memset(&vertexData_position_triangle, 0, sizeof(VertexData));
 
     VkBufferCreateInfo vkBufferCreateInfo;
     memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
@@ -3262,21 +3312,21 @@ VkResult CreateVertexBuffer(void)
     // Vulkan demands/recommends using small number of large sized allocations and use them repeatatively for different resources
 
     // While we specify memory in bytes, vulkan allocates memory in regions based on device memory properties requirements
-    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &vertexData_position.vkBuffer);
+    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &vertexData_position_triangle.vkBuffer);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateVertexBuffer: vkCreateBuffer failed with %d", vkResult);
+        LOGF("CreateVertexBuffer: vkCreateBuffer failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateVertexBuffer: vkCreateBuffer succeded");
+        LOGF("CreateVertexBuffer: vkCreateBuffer succeded for triangle");
     }
 
     // Get device memory requirements for the above buffer
     VkMemoryRequirements vkMemoryRequirements;
     memset(&vkMemoryRequirements, 0, sizeof(vkMemoryRequirements));
-    vkGetBufferMemoryRequirements(vkDevice, vertexData_position.vkBuffer, &vkMemoryRequirements);
+    vkGetBufferMemoryRequirements(vkDevice, vertexData_position_triangle.vkBuffer, &vkMemoryRequirements);
 
     // Now actually allocate the memory for the vertex data
     VkMemoryAllocateInfo vkMemoryAllocateInfo;
@@ -3305,59 +3355,170 @@ VkResult CreateVertexBuffer(void)
     }
     if (foundMemoryTypeIndex == FALSE)
     {
-        LOGF("CreateVertexBuffer: unable to locate required memory type");
+        LOGF("CreateVertexBuffer: unable to locate required memory type for triangle");
         return VK_ERROR_INITIALIZATION_FAILED;
     }
     else
     {
-        LOGF("CreateVertexBuffer: Found equired memory type at index %d", vkMemoryAllocateInfo.memoryTypeIndex);
+        LOGF("CreateVertexBuffer: Found equired memory type at index %d for triangle", vkMemoryAllocateInfo.memoryTypeIndex);
     }
 
-    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &vertexData_position.vkDeviceMemory);
+    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &vertexData_position_triangle.vkDeviceMemory);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateVertexBuffer: vkAllocateMemory failed with %d", vkResult);
+        LOGF("CreateVertexBuffer: vkAllocateMemory failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateVertexBuffer: vkAllocateMemory succeded");
+        LOGF("CreateVertexBuffer: vkAllocateMemory succeded for triangle");
     }
 
     // Bind Buffer
-    vkResult = vkBindBufferMemory(vkDevice, vertexData_position.vkBuffer, vertexData_position.vkDeviceMemory, 0);
+    vkResult = vkBindBufferMemory(vkDevice, vertexData_position_triangle.vkBuffer, vertexData_position_triangle.vkDeviceMemory, 0);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateVertexBuffer: vkBindBufferMemory failed with %d", vkResult);
+        LOGF("CreateVertexBuffer: vkBindBufferMemory failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateVertexBuffer: vkBindBufferMemory succeded");
+        LOGF("CreateVertexBuffer: vkBindBufferMemory succeded for triangle");
     }
 
     // Map allocation
     void* data = NULL;
-    vkResult = vkMapMemory(vkDevice, vertexData_position.vkDeviceMemory, 0, vkMemoryAllocateInfo.allocationSize, 0, &data);
+    vkResult = vkMapMemory(vkDevice, vertexData_position_triangle.vkDeviceMemory, 0, vkMemoryAllocateInfo.allocationSize, 0, &data);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateVertexBuffer: vkMapMemory failed with %d", vkResult);
+        LOGF("CreateVertexBuffer: vkMapMemory failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateVertexBuffer: vkMapMemory succeded");
+        LOGF("CreateVertexBuffer: vkMapMemory succeded for triangle");
     }
 
     // Copy vertex data to the mapped allocation
-    LOGF("CreateVertexBuffer: writing vertex data to mapped memory");
+    LOGF("CreateVertexBuffer: writing vertex data to mapped memory for triangle");
     memcpy(data, triangle_position, sizeof(triangle_position));
-    LOGF("CreateVertexBuffer: wrote vertex data to mapped memory");
+    LOGF("CreateVertexBuffer: wrote vertex data to mapped memory for triangle");
 
     // Unmap memory
-    LOGF("CreateVertexBuffer: unmapping vertex device memory");
-    vkUnmapMemory(vkDevice, vertexData_position.vkDeviceMemory);
-    LOGF("CreateVertexBuffer: unmapped vertex device memory");
+    LOGF("CreateVertexBuffer: unmapping vertex device memory for triangle");
+    vkUnmapMemory(vkDevice, vertexData_position_triangle.vkDeviceMemory);
+    LOGF("CreateVertexBuffer: unmapped vertex device memory for triangle");
+
+    // Rectangle --------------------
+
+    // Reset global variable
+    memset(&vertexData_position_rectangle, 0, sizeof(VertexData));
+
+    memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
+    vkBufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+    vkBufferCreateInfo.pNext = NULL;
+    vkBufferCreateInfo.flags = 0; // Valid flags are used in scattered/sparse buffer
+    vkBufferCreateInfo.size = sizeof(rectangle_position);
+    vkBufferCreateInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+    // vkBufferCreateInfo.sharingMode => By default exclusive. Not shared. when using concurrent, remaining 3 members would be used.
+    // In vulkan memory allocation is not done in bytes, but it is done in regions. The max number of regions 4096.
+    // Vulkan demands/recommends using small number of large sized allocations and use them repeatatively for different resources
+
+    // While we specify memory in bytes, vulkan allocates memory in regions based on device memory properties requirements
+    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &vertexData_position_rectangle.vkBuffer);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVertexBuffer: vkCreateBuffer failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateVertexBuffer: vkCreateBuffer succeded for rectangle");
+    }
+
+    // Get device memory requirements for the above buffer
+    memset(&vkMemoryRequirements, 0, sizeof(vkMemoryRequirements));
+    vkGetBufferMemoryRequirements(vkDevice, vertexData_position_rectangle.vkBuffer, &vkMemoryRequirements);
+
+    // Now actually allocate the memory for the vertex data
+    memset(&vkMemoryAllocateInfo, 0, sizeof(VkMemoryAllocateInfo));
+    vkMemoryAllocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    vkMemoryAllocateInfo.pNext = NULL;
+    vkMemoryAllocateInfo.allocationSize = vkMemoryRequirements.size;
+    // Find memory type required for this buffer
+    foundMemoryTypeIndex = FALSE;
+    for (uint32_t i = 0; i < vkPhysicalDeviceMemoryProperties.memoryTypeCount; ++i)
+    {
+        if ((vkMemoryRequirements.memoryTypeBits & 1) == 1)
+        {
+            if (vkPhysicalDeviceMemoryProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)
+            {
+                vkMemoryAllocateInfo.memoryTypeIndex = i;
+                foundMemoryTypeIndex = TRUE;
+                break;
+            }
+        }
+        else
+        {
+            // Right shift
+            vkMemoryRequirements.memoryTypeBits >>= 1;
+        }
+    }
+    if (foundMemoryTypeIndex == FALSE)
+    {
+        LOGF("CreateVertexBuffer: unable to locate required memory type for rectangle");
+        return VK_ERROR_INITIALIZATION_FAILED;
+    }
+    else
+    {
+        LOGF("CreateVertexBuffer: Found equired memory type at index %d for rectangle", vkMemoryAllocateInfo.memoryTypeIndex);
+    }
+
+    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &vertexData_position_rectangle.vkDeviceMemory);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVertexBuffer: vkAllocateMemory failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateVertexBuffer: vkAllocateMemory succeded for rectangle");
+    }
+
+    // Bind Buffer
+    vkResult = vkBindBufferMemory(vkDevice, vertexData_position_rectangle.vkBuffer, vertexData_position_rectangle.vkDeviceMemory, 0);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVertexBuffer: vkBindBufferMemory failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateVertexBuffer: vkBindBufferMemory succeded for rectangle");
+    }
+
+    // Map allocation
+    data = NULL;
+    vkResult = vkMapMemory(vkDevice, vertexData_position_rectangle.vkDeviceMemory, 0, vkMemoryAllocateInfo.allocationSize, 0, &data);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateVertexBuffer: vkMapMemory failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateVertexBuffer: vkMapMemory succeded for rectangle");
+    }
+
+    // Copy vertex data to the mapped allocation
+    LOGF("CreateVertexBuffer: writing vertex data to mapped memory for rectangle");
+    memcpy(data, rectangle_position, sizeof(rectangle_position));
+    LOGF("CreateVertexBuffer: wrote vertex data to mapped memory for rectangle");
+
+    // Unmap memory
+    LOGF("CreateVertexBuffer: unmapping vertex device memory for rectangle");
+    vkUnmapMemory(vkDevice, vertexData_position_rectangle.vkDeviceMemory);
+    LOGF("CreateVertexBuffer: unmapped vertex device memory for rectangle");
 
     return vkResult;
 }
@@ -3371,7 +3532,9 @@ VkResult CreateUniformBuffer(void)
     VkResult vkResult = VK_SUCCESS;
 
     // Code
-    memset(&uniformData, 0, sizeof(UniformData));
+
+    // Triangle ------------------------------
+    memset(&uniformData_triangle, 0, sizeof(UniformData));
 
     VkBufferCreateInfo vkBufferCreateInfo;
     memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
@@ -3382,21 +3545,21 @@ VkResult CreateUniformBuffer(void)
     vkBufferCreateInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 
     // While we specify memory in bytes, vulkan allocates memory in regions based on device memory properties requirements
-    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &uniformData.vkBuffer);
+    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &uniformData_triangle.vkBuffer);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateUniformBuffer: vkCreateBuffer failed with %d", vkResult);
+        LOGF("CreateUniformBuffer: vkCreateBuffer failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateUniformBuffer: vkCreateBuffer succeded");
+        LOGF("CreateUniformBuffer: vkCreateBuffer succeded for triangle");
     }
 
     // Get device memory requirements for the above buffer
     VkMemoryRequirements vkMemoryRequirements;
     memset(&vkMemoryRequirements, 0, sizeof(vkMemoryRequirements));
-    vkGetBufferMemoryRequirements(vkDevice, uniformData.vkBuffer, &vkMemoryRequirements);
+    vkGetBufferMemoryRequirements(vkDevice, uniformData_triangle.vkBuffer, &vkMemoryRequirements);
 
     // Now actually allocate the memory for the vertex data
     VkMemoryAllocateInfo vkMemoryAllocateInfo;
@@ -3425,38 +3588,125 @@ VkResult CreateUniformBuffer(void)
     }
     if (foundMemoryTypeIndex == FALSE)
     {
-        LOGF("CreateUniformBuffer: unable to locate required memory type");
+        LOGF("CreateUniformBuffer: unable to locate required memory type for triangle");
         return VK_ERROR_INITIALIZATION_FAILED;
     }
     else
     {
-        LOGF("CreateUniformBuffer: Found equired memory type at index %d", vkMemoryAllocateInfo.memoryTypeIndex);
+        LOGF("CreateUniformBuffer: Found equired memory type at index %d for triangle", vkMemoryAllocateInfo.memoryTypeIndex);
     }
 
-    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &uniformData.vkDeviceMemory);
+    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &uniformData_triangle.vkDeviceMemory);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateUniformBuffer: vkAllocateMemory failed with %d", vkResult);
+        LOGF("CreateUniformBuffer: vkAllocateMemory failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateUniformBuffer: vkAllocateMemory succeded");
+        LOGF("CreateUniformBuffer: vkAllocateMemory succeded for triangle");
     }
 
     // Store allocation size for this data
-    uniformData.allocationSize = vkMemoryAllocateInfo.allocationSize;
+    uniformData_triangle.allocationSize = vkMemoryAllocateInfo.allocationSize;
 
     // Bind Buffer
-    vkResult = vkBindBufferMemory(vkDevice, uniformData.vkBuffer, uniformData.vkDeviceMemory, 0);
+    vkResult = vkBindBufferMemory(vkDevice, uniformData_triangle.vkBuffer, uniformData_triangle.vkDeviceMemory, 0);
     if (vkResult != VK_SUCCESS)
     {
-        LOGF("CreateUniformBuffer: vkBindBufferMemory failed with %d", vkResult);
+        LOGF("CreateUniformBuffer: vkBindBufferMemory failed with %d for triangle", vkResult);
         return vkResult;
     }
     else
     {
-        LOGF("CreateUniformBuffer: vkBindBufferMemory succeded");
+        LOGF("CreateUniformBuffer: vkBindBufferMemory succeded for triangle");
+    }
+
+
+    // Rectangle ------------------------------
+    memset(&uniformData_rectangle, 0, sizeof(UniformData));
+
+    memset(&vkBufferCreateInfo, 0, sizeof(VkBufferCreateInfo));
+    vkBufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+    vkBufferCreateInfo.pNext = NULL;
+    vkBufferCreateInfo.flags = 0; // Valid flags are used in scattered/sparse buffer
+    vkBufferCreateInfo.size = sizeof(MyUniformData);
+    vkBufferCreateInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+
+    // While we specify memory in bytes, vulkan allocates memory in regions based on device memory properties requirements
+    vkResult = vkCreateBuffer(vkDevice, &vkBufferCreateInfo, NULL, &uniformData_rectangle.vkBuffer);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkCreateBuffer failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkCreateBuffer succeded for rectangle");
+    }
+
+    // Get device memory requirements for the above buffer
+    memset(&vkMemoryRequirements, 0, sizeof(vkMemoryRequirements));
+    vkGetBufferMemoryRequirements(vkDevice, uniformData_rectangle.vkBuffer, &vkMemoryRequirements);
+
+    // Now actually allocate the memory for the vertex data
+    memset(&vkMemoryAllocateInfo, 0, sizeof(VkMemoryAllocateInfo));
+    vkMemoryAllocateInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+    vkMemoryAllocateInfo.pNext = NULL;
+    vkMemoryAllocateInfo.allocationSize = vkMemoryRequirements.size;
+    // Find memory type required for this buffer
+    foundMemoryTypeIndex = FALSE;
+    for (uint32_t i = 0; i < vkPhysicalDeviceMemoryProperties.memoryTypeCount; ++i)
+    {
+        if ((vkMemoryRequirements.memoryTypeBits & 1) == 1)
+        {
+            if (vkPhysicalDeviceMemoryProperties.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT)
+            {
+                vkMemoryAllocateInfo.memoryTypeIndex = i;
+                foundMemoryTypeIndex = TRUE;
+                break;
+            }
+        }
+        else
+        {
+            // Right shift
+            vkMemoryRequirements.memoryTypeBits >>= 1;
+        }
+    }
+    if (foundMemoryTypeIndex == FALSE)
+    {
+        LOGF("CreateUniformBuffer: unable to locate required memory type for rectangle");
+        return VK_ERROR_INITIALIZATION_FAILED;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: Found equired memory type at index %d for rectangle", vkMemoryAllocateInfo.memoryTypeIndex);
+    }
+
+    vkResult = vkAllocateMemory(vkDevice, &vkMemoryAllocateInfo, NULL, &uniformData_rectangle.vkDeviceMemory);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkAllocateMemory failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkAllocateMemory succeded for rectangle");
+    }
+
+    // Store allocation size for this data
+    uniformData_rectangle.allocationSize = vkMemoryAllocateInfo.allocationSize;
+
+    // Bind Buffer
+    vkResult = vkBindBufferMemory(vkDevice, uniformData_rectangle.vkBuffer, uniformData_rectangle.vkDeviceMemory, 0);
+    if (vkResult != VK_SUCCESS)
+    {
+        LOGF("CreateUniformBuffer: vkBindBufferMemory failed with %d for rectangle", vkResult);
+        return vkResult;
+    }
+    else
+    {
+        LOGF("CreateUniformBuffer: vkBindBufferMemory succeded for rectangle");
     }
 
     // Update uniform buffer
@@ -3481,46 +3731,88 @@ VkResult UpdateUniformBuffer(void)
 
     // Code
     MyUniformData myUniformData;
-    memset(&myUniformData, 0, sizeof(MyUniformData));
-    myUniformData.modelMatrix = glm::mat4(1.0f);
 
-    // Update matrices
-    glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f,-4.0f));
-    glm::mat4 rotationMatrix = glm::rotate(
-        glm::mat4(1.0f),
-        glm::radians(angle),
-        glm::vec3(0.0f, 1.0f, 0.0f));
-
-    myUniformData.modelMatrix = myUniformData.modelMatrix * translationMatrix * rotationMatrix;
-    myUniformData.viewMatrix = glm::mat4(1.0f);
-
-    glm::mat4 perspectiveProjectionMatrix = glm::mat4(1.0);
-    perspectiveProjectionMatrix = glm::perspective<float>(
-        glm::radians(45.0f),
-        (float)winWidth / (float)winHeight,
-        0.1f,
-        100.0f);
-    // glm follows column major matrix just like opengl BUT unlike openGL, its matrix - array is 2D array 4x4, not 1D array of 16 elements
-    // Update mat4 to flip (y,y) to negate axis (2n/t-b)
-    perspectiveProjectionMatrix[1][1] = perspectiveProjectionMatrix[1][1] * -1.0f;
-
-    // Assign perspective projection matrix
-    myUniformData.projectionMatrix = perspectiveProjectionMatrix;
-
-    // Map uniform buffer
-    void *data = NULL;
-    vkResult = vkMapMemory(vkDevice, uniformData.vkDeviceMemory, 0, uniformData.allocationSize, 0, &data);
-    if (vkResult != VK_SUCCESS)
+    // For Triangle
     {
-        LOGF("UpdateUniformBuffer: vkMapMemory failed with %d", vkResult);
-        return vkResult;
+        // Update matrices
+        memset(&myUniformData, 0, sizeof(MyUniformData));
+        myUniformData.modelMatrix = glm::mat4(1.0f);
+        myUniformData.viewMatrix = glm::mat4(1.0f);
+
+        glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(-1.5f, 0.0f,-6.0f));
+        glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+        myUniformData.modelMatrix = myUniformData.modelMatrix * translationMatrix * rotationMatrix;
+        myUniformData.viewMatrix = glm::mat4(1.0f);
+
+        glm::mat4 perspectiveProjectionMatrix = glm ::mat4(1.0);
+        perspectiveProjectionMatrix = glm::perspective<float>(
+            glm::radians(45.0f),
+            (float)winWidth / (float)winHeight,
+            0.1f,
+            100.0f);
+        // glm follows column major matrix just like opengl BUT unlike openGL, its matrix - array is 2D array 4x4, not 1D array of 16 elements
+        // Update mat4 to flip (y,y) to negate axis (2n/t-b)
+        perspectiveProjectionMatrix[1][1] = perspectiveProjectionMatrix[1][1] * -1.0f;
+
+        // Assign perspective projection matrix
+        myUniformData.projectionMatrix = perspectiveProjectionMatrix;
+
+        // Map uniform buffer
+        void *data = NULL;
+        vkResult = vkMapMemory(vkDevice, uniformData_triangle.vkDeviceMemory, 0, uniformData_triangle.allocationSize, 0, &data);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("UpdateUniformBuffer: vkMapMemory failed with %d for triangle", vkResult);
+            return vkResult;
+        }
+
+        // Copy uniform data to the mapped allocation
+        memcpy(data, &myUniformData, sizeof(MyUniformData));
+
+        // Unmap memory
+        vkUnmapMemory(vkDevice, uniformData_triangle.vkDeviceMemory);
     }
 
-    // Copy uniform data to the mapped allocation
-    memcpy(data, &myUniformData, sizeof(MyUniformData));
+    // For Rectangle
+    {
+        // Update matrices
+        memset(&myUniformData, 0, sizeof(MyUniformData));
+        myUniformData.modelMatrix = glm::mat4(1.0f);
+        myUniformData.viewMatrix = glm::mat4(1.0f);
 
-    // Unmap memory
-    vkUnmapMemory(vkDevice, uniformData.vkDeviceMemory);
+        glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(1.5f, 0.0f, -6.0f));
+        glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f));
+        myUniformData.modelMatrix = myUniformData.modelMatrix * translationMatrix * rotationMatrix;
+        myUniformData.viewMatrix = glm::mat4(1.0f);
+
+        glm::mat4 perspectiveProjectionMatrix = glm::mat4(1.0);
+        perspectiveProjectionMatrix = glm::perspective<float>(
+            glm::radians(45.0f),
+            (float)winWidth / (float)winHeight,
+            0.1f,
+            100.0f);
+        // glm follows column major matrix just like opengl BUT unlike openGL, its matrix - array is 2D array 4x4, not 1D array of 16 elements
+        // Update mat4 to flip (y,y) to negate axis (2n/t-b)
+        perspectiveProjectionMatrix[1][1] = perspectiveProjectionMatrix[1][1] * -1.0f;
+
+        // Assign perspective projection matrix
+        myUniformData.projectionMatrix = perspectiveProjectionMatrix;
+
+        // Map uniform buffer
+        void *data = NULL;
+        vkResult = vkMapMemory(vkDevice, uniformData_rectangle.vkDeviceMemory, 0, uniformData_rectangle.allocationSize, 0, &data);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("UpdateUniformBuffer: vkMapMemory failed with %d for rectangle", vkResult);
+            return vkResult;
+        }
+
+        // Copy uniform data to the mapped allocation
+        memcpy(data, &myUniformData, sizeof(MyUniformData));
+
+        // Unmap memory
+        vkUnmapMemory(vkDevice, uniformData_rectangle.vkDeviceMemory);
+    }
 
     return vkResult;
 }
@@ -3751,7 +4043,7 @@ VkResult CreateDescriptorPool(void)
     vkDescriptorPoolCreateInfo.flags = 0;
     vkDescriptorPoolCreateInfo.poolSizeCount = 1;
     vkDescriptorPoolCreateInfo.pPoolSizes = &vkDescriptorPoolSize;
-    vkDescriptorPoolCreateInfo.maxSets = 1;
+    vkDescriptorPoolCreateInfo.maxSets = 2;
 
     vkResult = vkCreateDescriptorPool(vkDevice, &vkDescriptorPoolCreateInfo, NULL, &vkDescriptorPool);
     if (vkResult != VK_SUCCESS)
@@ -3775,41 +4067,83 @@ VkResult CreateDescriptorSet(void)
     vkDescriptorSetAllocateInfo.descriptorSetCount = 1;
     vkDescriptorSetAllocateInfo.pSetLayouts = &vkDescriptorSetLayout;
 
-    vkResult = vkAllocateDescriptorSets(vkDevice, &vkDescriptorSetAllocateInfo, &vkDescriptorSet);
-    if (vkResult != VK_SUCCESS)
+    // TRIANGLE --------------
     {
-        LOGF("CreateDescriptorSet: vkAllocateDescriptorSets failed with %d", vkResult);
-        return vkResult;
+        vkResult = vkAllocateDescriptorSets(vkDevice, &vkDescriptorSetAllocateInfo, &vkDescriptorSet_triangle);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("CreateDescriptorSet: vkAllocateDescriptorSets failed with %d for triangle", vkResult);
+            return vkResult;
+        }
+
+        // Describe whether we want buffer as uniform or image as uniform
+        VkDescriptorBufferInfo vkDescriptorBufferInfo;
+        memset(&vkDescriptorBufferInfo, 0, sizeof(VkDescriptorBufferInfo));
+        vkDescriptorBufferInfo.buffer = uniformData_triangle.vkBuffer;
+        vkDescriptorBufferInfo.offset = 0;
+        vkDescriptorBufferInfo.range = uniformData_triangle.allocationSize;
+
+        // Now update above descriptor set directly to the shader
+        // There are two ways to update -
+        // 1. Writing directly to the shader
+        // 2. Copying from one shader to another shader
+        //
+        // We will prefer writing directly to the shader. This requires initialization of following structure
+        VkWriteDescriptorSet vkWriteDescriptorSet;
+        memset(&vkWriteDescriptorSet, 0, sizeof(VkWriteDescriptorSet));
+        vkWriteDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+        vkWriteDescriptorSet.dstSet = vkDescriptorSet_triangle;
+        vkWriteDescriptorSet.dstBinding = 0; // Due to layout(binding = 0) uniform mvpMatrix in vertex shader
+        vkWriteDescriptorSet.dstArrayElement = 0;
+        vkWriteDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+        vkWriteDescriptorSet.descriptorCount = 1;
+        vkWriteDescriptorSet.pBufferInfo = &vkDescriptorBufferInfo;
+        vkWriteDescriptorSet.pImageInfo = NULL;
+        vkWriteDescriptorSet.pTexelBufferView = NULL;
+
+        vkUpdateDescriptorSets(vkDevice, 1, &vkWriteDescriptorSet, 0, nullptr);
+
+        LOGF("CreateDescriptorSet: vkUpdateDescriptorSets completed for triangle");
     }
 
-    // Describe whether we want buffer as uniform or image as uniform
-    VkDescriptorBufferInfo vkDescriptorBufferInfo;
-    memset(&vkDescriptorBufferInfo, 0, sizeof(VkDescriptorBufferInfo));
-    vkDescriptorBufferInfo.buffer = uniformData.vkBuffer;
-    vkDescriptorBufferInfo.offset = 0;
-    vkDescriptorBufferInfo.range = uniformData.allocationSize;
+    // RECTANGLE --------------
+    {
+        vkResult = vkAllocateDescriptorSets(vkDevice, &vkDescriptorSetAllocateInfo, &vkDescriptorSet_rectangle);
+        if (vkResult != VK_SUCCESS)
+        {
+            LOGF("CreateDescriptorSet: vkAllocateDescriptorSets failed with %d for rectangle", vkResult);
+            return vkResult;
+        }
 
-    // Now update above descriptor set directly to the shader
-    // There are two ways to update -
-    // 1. Writing directly to the shader
-    // 2. Copying from one shader to another shader
-    //
-    // We will prefer writing directly to the shader. This requires initialization of following structure
-    VkWriteDescriptorSet vkWriteDescriptorSet;
-    memset(&vkWriteDescriptorSet, 0, sizeof(VkWriteDescriptorSet));
-    vkWriteDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-    vkWriteDescriptorSet.dstSet = vkDescriptorSet;
-    vkWriteDescriptorSet.dstBinding = 0; // Due to layout(binding = 0) uniform mvpMatrix in vertex shader
-    vkWriteDescriptorSet.dstArrayElement = 0;
-    vkWriteDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-    vkWriteDescriptorSet.descriptorCount = 1;
-    vkWriteDescriptorSet.pBufferInfo = &vkDescriptorBufferInfo;
-    vkWriteDescriptorSet.pImageInfo = NULL;
-    vkWriteDescriptorSet.pTexelBufferView = NULL;
+        // Describe whether we want buffer as uniform or image as uniform
+        VkDescriptorBufferInfo vkDescriptorBufferInfo;
+        memset(&vkDescriptorBufferInfo, 0, sizeof(VkDescriptorBufferInfo));
+        vkDescriptorBufferInfo.buffer = uniformData_rectangle.vkBuffer;
+        vkDescriptorBufferInfo.offset = 0;
+        vkDescriptorBufferInfo.range = uniformData_rectangle.allocationSize;
 
-    vkUpdateDescriptorSets(vkDevice, 1, &vkWriteDescriptorSet, 0, nullptr);
+        // Now update above descriptor set directly to the shader
+        // There are two ways to update -
+        // 1. Writing directly to the shader
+        // 2. Copying from one shader to another shader
+        //
+        // We will prefer writing directly to the shader. This requires initialization of following structure
+        VkWriteDescriptorSet vkWriteDescriptorSet;
+        memset(&vkWriteDescriptorSet, 0, sizeof(VkWriteDescriptorSet));
+        vkWriteDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+        vkWriteDescriptorSet.dstSet = vkDescriptorSet_rectangle;
+        vkWriteDescriptorSet.dstBinding = 0; // Due to layout(binding = 0) uniform mvpMatrix in vertex shader
+        vkWriteDescriptorSet.dstArrayElement = 0;
+        vkWriteDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+        vkWriteDescriptorSet.descriptorCount = 1;
+        vkWriteDescriptorSet.pBufferInfo = &vkDescriptorBufferInfo;
+        vkWriteDescriptorSet.pImageInfo = NULL;
+        vkWriteDescriptorSet.pTexelBufferView = NULL;
 
-    LOGF("CreateDescriptorSet: vkUpdateDescriptorSets completed");
+        vkUpdateDescriptorSets(vkDevice, 1, &vkWriteDescriptorSet, 0, nullptr);
+
+        LOGF("CreateDescriptorSet: vkUpdateDescriptorSets completed for rectangle");
+    }
 
     return vkResult;
 }
@@ -4275,17 +4609,35 @@ VkResult BuildCommandBuffers(void)
         // Bind with the pipeline
         vkCmdBindPipeline(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);
 
-        // Bind with the vertex buffer
-        VkDeviceSize vkDeviceSize_offset_array[1];
-        memset(vkDeviceSize_offset_array, 0, _ARRAYSIZE(vkDeviceSize_offset_array) * sizeof(VkDeviceSize));
-        vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position.vkBuffer, vkDeviceSize_offset_array);
+        // TRIANGLE ---------
+        {
+            // Bind with the vertex buffer
+            VkDeviceSize vkDeviceSize_offset_array[1];
+            memset(vkDeviceSize_offset_array, 0, _ARRAYSIZE(vkDeviceSize_offset_array) * sizeof(VkDeviceSize));
+            vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position_triangle.vkBuffer, vkDeviceSize_offset_array);
 
-        // Bind Descriptor sets for uniform buffer to pipeline
-        vkCmdBindDescriptorSets(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
-                                vkPipelineLayout, 0, 1, &vkDescriptorSet, 0, nullptr);
+            // Bind Descriptor sets for uniform buffer to pipeline
+            vkCmdBindDescriptorSets(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                    vkPipelineLayout, 0, 1, &vkDescriptorSet_triangle, 0, nullptr);
 
-        // Here, we should call vulkan drawing functions
-        vkCmdDraw(vkCommandBuffer_array[i], 3, 1, 0, 0);
+            // Here, we should call vulkan drawing functions
+            vkCmdDraw(vkCommandBuffer_array[i], 3, 1, 0, 0);
+        }
+
+        // RECTANGLE ---------
+        {
+            // Bind with the vertex buffer
+            VkDeviceSize vkDeviceSize_offset_array[1];
+            memset(vkDeviceSize_offset_array, 0, _ARRAYSIZE(vkDeviceSize_offset_array) * sizeof(VkDeviceSize));
+            vkCmdBindVertexBuffers(vkCommandBuffer_array[i], 0, 1, &vertexData_position_rectangle.vkBuffer, vkDeviceSize_offset_array);
+
+            // Bind Descriptor sets for uniform buffer to pipeline
+            vkCmdBindDescriptorSets(vkCommandBuffer_array[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
+                                    vkPipelineLayout, 0, 1, &vkDescriptorSet_rectangle, 0, nullptr);
+
+            // Here, we should call vulkan drawing functions
+            vkCmdDraw(vkCommandBuffer_array[i], 6, 1, 0, 0);
+        }
 
         // End render pass
         LOGF("BuildCommandBuffers: vkCmdEndRenderPass %dth command buffer.", i);
