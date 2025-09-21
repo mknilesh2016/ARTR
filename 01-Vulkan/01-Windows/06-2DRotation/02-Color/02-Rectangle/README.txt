@@ -1,0 +1,2 @@
+- SHADERS are from multi-colored triangle
+- Using Triangle List Way
